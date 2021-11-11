@@ -3,7 +3,6 @@ class Contact {
   late String phone;
   late String email;
   late int id;
-  static int id_maker = 0;
 /*
   Contact({
     required this.name,
@@ -12,12 +11,11 @@ class Contact {
     this.id = 1,
   });
 */
-  Contact(String name, String phone, String email) {
+  Contact(String name, String phone, String email, int id) {
     this.name = name;
     this.phone = phone;
     this.email = email;
-    id = id_maker;
-    id_maker++;
+    this.id = id;
   }
 
   String getName() {
