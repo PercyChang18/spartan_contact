@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'organization_setting.dart';
 
 class ContactsPage extends StatefulWidget {
-
   @override
   _ContactsPageState createState() => _ContactsPageState();
 }
@@ -21,8 +20,8 @@ class _ContactsPageState extends State<ContactsPage> {
             color: Colors.white,
             tooltip: 'Organization Settings',
             onPressed: () {
-            Navigator.pushNamed(context, '/organization_setting');
-          },
+              Navigator.pushNamed(context, '/organization_setting');
+            },
           )
         ],
       ),
@@ -77,7 +76,7 @@ class _ContactsPageState extends State<ContactsPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {  },
+        onPressed: () {},
         child: Icon(Icons.add),
       ),
     );

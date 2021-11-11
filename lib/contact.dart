@@ -2,8 +2,14 @@ class Contact {
   String name;
   String phone;
   String email;
+  int id;
 
-  Contact(this.name, this.phone, this.email);
+  Contact({
+    required this.name,
+    required this.phone,
+    required this.email,
+    this.id = 1,
+  });
 
   String getName() {
     return name;
@@ -22,10 +28,24 @@ class Contact {
   }
 
   String getEmail() {
-    return email;
+    return this.email;
   }
 
   void setEmail(email) {
     this.email = email;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'phone': phone,
+      'email': email,
+    };
+  }
+
+  @override
+  String toString() {
+    return 'Contact {id: $id, name: $name, phone: $phone, email: $email}';
   }
 }
