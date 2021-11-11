@@ -3,11 +3,7 @@ class Contact {
   String phone;
   String email;
 
-  Contact({
-    required this.name,
-    required this.phone,
-    required this.email,
-  });
+  Contact(this.name, this.phone, this.email);
 
   String getName() {
     return name;
@@ -26,7 +22,7 @@ class Contact {
   }
 
   String getEmail() {
-    return this.email;
+    return email;
   }
 
   void setEmail(email) {
