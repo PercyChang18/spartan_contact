@@ -1,21 +1,16 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'organization_button.dart';
+
 import 'constants.dart';
-import 'contact_info.dart';
+import 'organization_button.dart';
 
 class OrganizationSetting extends StatefulWidget {
   const OrganizationSetting({Key? key}) : super(key: key);
-
-
 
   @override
   _OrganizationSettingState createState() => _OrganizationSettingState();
 }
 
 class _OrganizationSettingState extends State<OrganizationSetting> {
-
   bool lastNameIsSelected = false;
   bool firstNameIsSelected = false;
   bool customLabelIsSelected = false;
@@ -23,20 +18,20 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
   bool phoneIsSelected = false;
   bool emailIsSelected = false;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Sort By'),
-          backgroundColor: Color(0xFF4224FE),
-        ),
+      appBar: AppBar(
+        title: Text('Sort By'),
         backgroundColor: Color(0xFF4224FE),
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(child: GestureDetector(
+      ),
+      backgroundColor: Color(0xFF4224FE),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: GestureDetector(
                 onTap: () {
                   setState(() {
                     lastNameIsSelected = !lastNameIsSelected;
@@ -44,10 +39,14 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
                 },
                 child: OrganizationButton(
                   'Last Name',
-                  lastNameIsSelected ? kButtonSelectedColor : kButtonNotSelectedColor,
+                  lastNameIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
                 ),
-              ),),
-              Expanded(child: GestureDetector(
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
                 onTap: () {
                   setState(() {
                     firstNameIsSelected = !firstNameIsSelected;
@@ -55,10 +54,14 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
                 },
                 child: OrganizationButton(
                   'First Name',
-                  firstNameIsSelected ? kButtonSelectedColor : kButtonNotSelectedColor,
+                  firstNameIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
                 ),
-              ),),
-              Expanded(child: GestureDetector(
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
                 onTap: () {
                   setState(() {
                     customLabelIsSelected = !customLabelIsSelected;
@@ -66,10 +69,14 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
                 },
                 child: OrganizationButton(
                   'Custom Label',
-                  customLabelIsSelected ? kButtonSelectedColor : kButtonNotSelectedColor,
+                  customLabelIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
                 ),
-              ),),
-              Expanded(child: GestureDetector(
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
                 onTap: () {
                   setState(() {
                     occupationIsSelected = !occupationIsSelected;
@@ -77,10 +84,14 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
                 },
                 child: OrganizationButton(
                   'Occupation',
-                  occupationIsSelected ? kButtonSelectedColor : kButtonNotSelectedColor,
+                  occupationIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
                 ),
-              ),),
-              Expanded(child: GestureDetector(
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
                 onTap: () {
                   setState(() {
                     phoneIsSelected = !phoneIsSelected;
@@ -88,10 +99,14 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
                 },
                 child: OrganizationButton(
                   'Phone',
-                  phoneIsSelected ? kButtonSelectedColor : kButtonNotSelectedColor,
+                  phoneIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
                 ),
-              ),),
-              Expanded(child: GestureDetector(
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
                 onTap: () {
                   setState(() {
                     emailIsSelected = !emailIsSelected;
@@ -99,17 +114,20 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
                 },
                 child: OrganizationButton(
                   'Email',
-                  emailIsSelected ? kButtonSelectedColor : kButtonNotSelectedColor,
+                  emailIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
                 ),
-              ),),
-              Padding(padding: EdgeInsets.all(10.0)),
-              Expanded(
-                  flex: 2,
-                  child: Text(''),
               ),
-            ],
-          ),
+            ),
+            Padding(padding: EdgeInsets.all(10.0)),
+            Expanded(
+              flex: 2,
+              child: Text(''),
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }
