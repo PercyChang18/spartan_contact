@@ -1,6 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'organization_setting.dart';
+
+import 'contact.dart';
+
+List<Contact> contactsList = <Contact>[
+  Contact("name1", "phone1", "email1"),
+  Contact("name2", "phone2", "email2"),
+  Contact("name3", "phone3", "email3"),
+  Contact("name4", "phone4", "email4"),
+  Contact("name5", "phone5", "email5"),
+];
 
 class ContactsPage extends StatefulWidget {
   @override
@@ -43,31 +52,31 @@ class _ContactsPageState extends State<ContactsPage> {
               ),
             ),
             GestureDetector(
-              child: ContactContainer(),
+              child: ContactContainer(contact: contactsList[0]),
               onTap: () {
                 Navigator.pushNamed(context, '/individual_contact');
               },
             ),
             GestureDetector(
-              child: ContactContainer(),
+              child: ContactContainer(contact: contactsList[3]),
               onTap: () {
                 Navigator.pushNamed(context, '/individual_contact');
               },
             ),
             GestureDetector(
-              child: ContactContainer(),
+              child: ContactContainer(contact: contactsList[1]),
               onTap: () {
                 Navigator.pushNamed(context, '/individual_contact');
               },
             ),
             GestureDetector(
-              child: ContactContainer(),
+              child: ContactContainer(contact: contactsList[2]),
               onTap: () {
                 Navigator.pushNamed(context, '/individual_contact');
               },
             ),
             GestureDetector(
-              child: ContactContainer(),
+              child: ContactContainer(contact: contactsList[4]),
               onTap: () {
                 Navigator.pushNamed(context, '/individual_contact');
               },
@@ -84,7 +93,8 @@ class _ContactsPageState extends State<ContactsPage> {
 }
 
 class ContactContainer extends StatelessWidget {
-  const ContactContainer({Key? key}) : super(key: key);
+  Contact contact;
+  ContactContainer({Key? key, required this.contact}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +105,7 @@ class ContactContainer extends StatelessWidget {
       margin: EdgeInsets.all(5),
       child: Row(
         children: <Widget>[
-          Text('Name'),
+          Text(contact.getName()),
         ],
       ),
     );

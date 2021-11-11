@@ -1,7 +1,9 @@
-import 'package:flutter/widgets.dart';
 import 'dart:async';
+
+import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
 import 'contact.dart';
 
 void main() async {
@@ -29,10 +31,9 @@ void main() async {
 
     return List.generate(maps.length, (i) {
       return Contact(
-        name: maps[i]['name'],
-        phone: maps[i]['phone'],
-        email: maps[i]['email'],
-        id: maps[i]['id'],
+        maps[i]['name'],
+        maps[i]['phone'],
+        maps[i]['email'],
       );
     });
   }
