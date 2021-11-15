@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'contact.dart';
+import 'individual_contact.dart';
 
 List<Contact> contactsList = <Contact>[
-  Contact("name1", "phone1", "email1"),
-  Contact("name2", "phone2", "email2"),
-  Contact("name3", "phone3", "email3"),
-  Contact("name4", "phone4", "email4"),
-  Contact("name5", "phone5", "email5"),
+  Contact("name1", "phone1", "email1", 1),
+  Contact("name2", "phone2", "email2", 2),
+  Contact("name3", "phone3", "email3", 3),
+  Contact("name4", "phone4", "email4", 4),
+  Contact("name5", "phone5", "email5", 5),
 ];
 
 class ContactsPage extends StatefulWidget {
@@ -54,31 +55,56 @@ class _ContactsPageState extends State<ContactsPage> {
             GestureDetector(
               child: ContactContainer(contact: contactsList[0]),
               onTap: () {
-                Navigator.pushNamed(context, '/individual_contact');
+                //Navigator.pushNamed(context, '/individual_contact');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            IndividualContact(contact: contactsList[0])));
               },
             ),
             GestureDetector(
               child: ContactContainer(contact: contactsList[3]),
               onTap: () {
-                Navigator.pushNamed(context, '/individual_contact');
+                //Navigator.pushNamed(context, '/individual_contact');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            IndividualContact(contact: contactsList[3])));
               },
             ),
             GestureDetector(
               child: ContactContainer(contact: contactsList[1]),
               onTap: () {
-                Navigator.pushNamed(context, '/individual_contact');
+                //Navigator.pushNamed(context, '/individual_contact');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            IndividualContact(contact: contactsList[1])));
               },
             ),
             GestureDetector(
               child: ContactContainer(contact: contactsList[2]),
               onTap: () {
-                Navigator.pushNamed(context, '/individual_contact');
+                //Navigator.pushNamed(context, '/individual_contact');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            IndividualContact(contact: contactsList[2])));
               },
             ),
             GestureDetector(
               child: ContactContainer(contact: contactsList[4]),
               onTap: () {
-                Navigator.pushNamed(context, '/individual_contact');
+                //Navigator.pushNamed(context, '/individual_contact');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            IndividualContact(contact: contactsList[4])));
               },
             ),
           ],

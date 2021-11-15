@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'organization_setting.dart';
+
 import 'contacts_page.dart';
-import 'individual_contact.dart';
+import 'organization_setting.dart';
 
 void main() {
   runApp(SpartanContact());
 }
-
 
 class SpartanContact extends StatelessWidget {
   const SpartanContact({Key? key}) : super(key: key);
@@ -19,13 +18,8 @@ class SpartanContact extends StatelessWidget {
       routes: {
         '/': (context) => ContactsPage(),
         '/organization_setting': (context) => OrganizationSetting(),
-        '/individual_contact': (context) => IndividualContact(),
-
-
+        //'/individual_contact': (context) => IndividualContact(),
       },
     );
   }
 }
-
-
-
