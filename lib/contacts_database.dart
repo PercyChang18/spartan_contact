@@ -34,8 +34,29 @@ void main() async {
         maps[i]['name'],
         maps[i]['phone'],
         maps[i]['email'],
+        maps[i]['id'],
       );
     });
+  }
+
+  Future<void> updateContact(Contact contact) async {
+    final db = await database;
+
+    await db.update(
+      'contacts',
+      contact.toMap(),
+      where: 'id = ?',
+      whereArgs: [contact.id],
+    );
+  }
+
+  Future<void> deleteContact(int id) async {
+    final db = await database;
+    await db.delete(
+      'contacts',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 
   print(await contacts());
