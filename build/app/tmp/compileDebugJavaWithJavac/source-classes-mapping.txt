@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/spartan_contact/BuildConfig.java
+ com.example.spartan_contact.BuildConfig
