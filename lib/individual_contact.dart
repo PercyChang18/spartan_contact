@@ -11,10 +11,10 @@ class IndividualContact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Individual Contact'),
+        title: const Text('Individual Contact'),
         actions: [
           TextButton(
-            child: Text(
+            child: const Text(
               'Edit',
               style: TextStyle(
                   fontFamily: 'Source Sans Pro',
@@ -49,15 +49,14 @@ class IndividualContact extends StatelessWidget {
                       //           fontWeight: FontWeight.bold,
                       //         )))
                     ])),
-            Container(
-                child: Column(children: <Widget>[
+            Column(children: <Widget>[
               const CircleAvatar(
                 radius: 50.0,
                 backgroundImage: AssetImage('images/profile.png'),
               ),
               Text(
                 contact.getName(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'ZenAntique',
                   fontSize: 40.0,
                   color: Colors.white,
@@ -65,7 +64,7 @@ class IndividualContact extends StatelessWidget {
                 ),
               ),
               Text(
-                'Occupation',
+                contact.getOccupation(),
                 style: TextStyle(
                   fontFamily: 'Source Sans Pro',
                   fontSize: 20.0,
@@ -85,7 +84,7 @@ class IndividualContact extends StatelessWidget {
                     leading: const Icon(Icons.phone, color: Colors.teal),
                     title: Text(
                       contact.getPhone(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.teal,
                           fontFamily: 'Source Sans Pro',
                           fontSize: 20.0),
@@ -98,7 +97,7 @@ class IndividualContact extends StatelessWidget {
                   leading: const Icon(Icons.email, color: Colors.teal),
                   title: Text(
                     contact.getEmail(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.teal,
                         fontFamily: 'Source Sans Pro',
                         fontSize: 20.0),
@@ -111,8 +110,8 @@ class IndividualContact extends StatelessWidget {
                 child: ListTile(
                     leading: const Icon(Icons.house, color: Colors.teal),
                     title: Text(
-                      '1 Washington Sq. San Jose, CA',
-                      style: TextStyle(
+                      contact.getAddress(),
+                      style: const TextStyle(
                           color: Colors.teal,
                           fontFamily: 'Source Sans Pro',
                           fontSize: 20.0),
@@ -124,24 +123,23 @@ class IndividualContact extends StatelessWidget {
                 child: ListTile(
                   leading: const Icon(Icons.web, color: Colors.teal),
                   title: Text(
-                    'my-website.com',
-                    style: TextStyle(
+                    contact.getWebsite(),
+                    style: const TextStyle(
                         color: Colors.teal,
                         fontFamily: 'Source Sans Pro',
                         fontSize: 20.0),
                   ),
                 ),
               ),
-            ])),
-            Container(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
+            ]),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
                   Card(
                       color: Colors.red,
                       child: Text('Delete Contact',
                           style: TextStyle(fontSize: 15.0)))
-                ])),
+                ]),
           ],
         ),
       ),

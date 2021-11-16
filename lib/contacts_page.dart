@@ -5,12 +5,20 @@ import 'contact.dart';
 import 'individual_contact.dart';
 
 List<Contact> contactsList = <Contact>[
-  Contact("name1", "phone1", "email1", 1),
-  Contact("name2", "phone2", "email2", 2),
-  Contact("name3", "phone3", "email3", 3),
-  Contact("name4", "phone4", "email4", 4),
-  Contact("name5", "phone5", "email5", 5),
-  Contact("Joe Shmoe", "123-456-7890", "joe.shmoe@email.com", 6)
+  Contact(
+      "name1", "occupation1", "phone1", "email1", "address1", "website1", 1),
+  Contact(
+      "name2", "occupation2", "phone2", "email2", "address2", "website2", 2),
+  Contact(
+      "name3", "occupation3", "phone3", "email3", "address3", "website3", 3),
+  Contact(
+      "Viola Yasuda",
+      "Software Engineering Student",
+      "510-111-2222",
+      "viola.yasuda@sjsu.edu",
+      "1234 Washington Sq. San Jose, CA 12345",
+      "vyasuda.website.com",
+      4),
 ];
 List<GestureDetector> detectorList = <GestureDetector>[];
 void initializeDetectorList(BuildContext context) {
@@ -33,6 +41,8 @@ void initializeDetectorList(BuildContext context) {
 }
 
 class ContactsPage extends StatefulWidget {
+  const ContactsPage({Key? key}) : super(key: key);
+
   @override
   _ContactsPageState createState() => _ContactsPageState();
 }
@@ -43,11 +53,11 @@ class _ContactsPageState extends State<ContactsPage> {
     initializeDetectorList(context);
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.account_tree_rounded),
-        title: Text('Spartan Contacts'),
+        leading: const Icon(Icons.account_tree_rounded),
+        title: const Text('Spartan Contacts'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
             color: Colors.white,
             tooltip: 'Organization Settings',
             onPressed: () {
@@ -62,10 +72,10 @@ class _ContactsPageState extends State<ContactsPage> {
             Container(
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(5)),
-              padding: EdgeInsets.all(4),
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              padding: const EdgeInsets.all(4),
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Row(
-                children: <Widget>[
+                children: const <Widget>[
                   Icon(
                     Icons.search,
                     color: Colors.teal,
@@ -79,7 +89,7 @@ class _ContactsPageState extends State<ContactsPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -94,8 +104,8 @@ class ContactContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: Colors.teal, borderRadius: BorderRadius.circular(5)),
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(5),
       child: Row(
         children: <Widget>[
           Text(contact.getName()),

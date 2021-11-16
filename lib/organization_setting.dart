@@ -22,10 +22,10 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sort By'),
-        backgroundColor: Color(0xFF4224FE),
+        title: const Text('Sort By'),
+        backgroundColor: const Color(0xFF4224FE),
       ),
-      backgroundColor: Color(0xFF4224FE),
+      backgroundColor: const Color(0xFF4224FE),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -120,8 +120,8 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
                 ),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10.0)),
-            Expanded(
+            const Padding(padding: EdgeInsets.all(10.0)),
+            const Expanded(
               flex: 2,
               child: Text(''),
             ),

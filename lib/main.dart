@@ -4,7 +4,7 @@ import 'contacts_page.dart';
 import 'organization_setting.dart';
 
 void main() {
-  runApp(SpartanContact());
+  runApp(const SpartanContact());
 }
 
 class SpartanContact extends StatelessWidget {
@@ -16,8 +16,8 @@ class SpartanContact extends StatelessWidget {
       theme: ThemeData.dark(),
       initialRoute: '/',
       routes: {
-        '/': (context) => ContactsPage(),
-        '/organization_setting': (context) => OrganizationSetting(),
+        '/': (context) => const ContactsPage(),
+        '/organization_setting': (context) => const OrganizationSetting(),
         //'/individual_contact': (context) => IndividualContact(),
       },
     );

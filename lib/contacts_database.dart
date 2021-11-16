@@ -32,8 +32,11 @@ void main() async {
     return List.generate(maps.length, (i) {
       return Contact(
         maps[i]['name'],
+        maps[i]['occupation'],
         maps[i]['phone'],
         maps[i]['email'],
+        maps[i]['address'],
+        maps[i]['website'],
         maps[i]['id'],
       );
     });
