@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'organization_button.dart';
 
+///
 class OrganizationSetting extends StatefulWidget {
+  ///
   const OrganizationSetting({Key? key}) : super(key: key);
 
+  ///
   @override
   _OrganizationSettingState createState() => _OrganizationSettingState();
 }
 
+///
 class _OrganizationSettingState extends State<OrganizationSetting> {
   bool lastNameIsSelected = false;
   bool firstNameIsSelected = false;
@@ -18,6 +22,7 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
   bool phoneIsSelected = false;
   bool emailIsSelected = false;
 
+  ///
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -6,6 +6,9 @@ import 'package:sqflite/sqflite.dart';
 
 import 'contact.dart';
 
+///
+/// @author
+/// @version
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -18,17 +21,17 @@ void main() async {
     version: 1,
   );
 
+  ///
   Future<void> insertContact(Contact contact) async {
     final db = await database;
     await db.insert('contacts', contact.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  ///
   Future<List<Contact>> contacts() async {
     final db = await database;
-
     final List<Map<String, dynamic>> maps = await db.query("contacts");
-
     return List.generate(maps.length, (i) {
       return Contact(
         maps[i]['name'],
@@ -42,6 +45,7 @@ void main() async {
     });
   }
 
+  ///
   Future<void> updateContact(Contact contact) async {
     final db = await database;
 
@@ -53,6 +57,7 @@ void main() async {
     );
   }
 
+  ///
   Future<void> deleteContact(int id) async {
     final db = await database;
     await db.delete(

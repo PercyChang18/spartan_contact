@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
+///
 class OrganizationButton extends StatelessWidget {
   final String buttonTitle;
   final Color colour;
 
+  ///
   const OrganizationButton(this.buttonTitle, this.colour);
 
+  ///
   @override
   Widget build(BuildContext context) {
     return Container(

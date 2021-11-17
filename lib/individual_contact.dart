@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'contact.dart';
 
+/// Represents a page for an individual contact.
 class IndividualContact extends StatelessWidget {
-  Contact contact;
+  final Contact contact;
 
-  IndividualContact({Key? key, required this.contact}) : super(key: key);
+  /// Constructs an IndividualContact page.
+  const IndividualContact({Key? key, required this.contact}) : super(key: key);
 
+  /// Builds the display for an IndividualContact.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
