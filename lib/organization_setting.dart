@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'model.dart';
 import 'organization_button.dart';
+import 'view.dart';
 
 ///
-class OrganizationSetting extends StatefulWidget {
+class OrganizationSetting extends StatefulWidget implements View {
+  final Model model;
+
   ///
-  const OrganizationSetting({Key? key}) : super(key: key);
+  const OrganizationSetting({Key? key, required this.model}) : super(key: key);
 
   ///
   @override
   _OrganizationSettingState createState() => _OrganizationSettingState();
+
+  @override
+  void update() {
+    // TODO: implement update
+  }
 }
 
 ///

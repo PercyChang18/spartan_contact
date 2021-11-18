@@ -5,14 +5,16 @@ import 'view.dart';
 /// @author Viola Yasuda
 /// @version 11/16/2021
 class Model {
-  List<Contact> fullContactsList = <Contact>[];
-  String organizationStyle = "last name";
-  List<View> views;
-  List<Contact> displayedContactsList = <Contact>[];
+  List<Contact> fullContactsList;
+  String organizationStyle;
+  late List<View> views;
+  late List<Contact> displayedContactsList;
 
   /// Constructs a Model object.
-  Model(this.fullContactsList, this.organizationStyle,
-      this.displayedContactsList, this.views);
+  Model(this.fullContactsList, this.organizationStyle) {
+    views = <View>[];
+    displayedContactsList = fullContactsList;
+  }
 
   /// Gets the full contacts list.
   List<Contact> getFullContactsList() {
