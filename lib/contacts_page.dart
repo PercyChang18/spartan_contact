@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'sorting.dart';
 
 import 'contact.dart';
 import 'individual_contact.dart';
@@ -34,9 +35,12 @@ class _ContactsPageState extends State<ContactsPage> {
   ];
   List<GestureDetector> detectorList = <GestureDetector>[];
 
+  Sorting s = new Sorting();
+
   /// Initializes the list of GestureDetector objects for use in the build method.
   void initializeDetectorList(BuildContext context) {
     detectorList = <GestureDetector>[];
+    s.sortByEmail(contactsList); //Hard coded sorting method.
     for (int i = 0; i < contactsList.length; i++) {
       detectorList.add(
         GestureDetector(
