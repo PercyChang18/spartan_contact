@@ -4,25 +4,12 @@ import 'contact.dart';
 import 'contacts_page.dart';
 import 'model.dart';
 import 'organization_setting.dart';
+import 'contacts_database.dart';
 
 ///
-void main() {
-  Model model = Model(<Contact>[
-    Contact(
-        "name1", "occupation1", "phone1", "email1", "address1", "website1", 1),
-    Contact(
-        "name2", "occupation2", "phone2", "email2", "address2", "website2", 2),
-    Contact(
-        "name3", "occupation3", "phone3", "email3", "address3", "website3", 3),
-    Contact(
-        "Viola Yasuda",
-        "Software Engineering Student",
-        "510-111-2222",
-        "viola.yasuda@sjsu.edu",
-        "1234 Washington Sq. San Jose, CA 12345",
-        "vyasuda.website.com",
-        4),
-  ], "last name");
+void main() async {
+  List<Contact> list = await getContacts();
+  Model model = Model(list, "last name");
   ContactsPage contactsPage = ContactsPage(model: model);
   OrganizationSetting organizationSetting = OrganizationSetting(model: model);
   model.registerView(contactsPage);
