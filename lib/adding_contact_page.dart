@@ -4,6 +4,8 @@ import 'contact.dart';
 import 'model.dart';
 
 /// Represents a page for adding an individual contact.
+/// @author Viola Yasuda
+/// @version 11/18/2021
 class AddingContact extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();

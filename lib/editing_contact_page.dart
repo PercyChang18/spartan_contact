@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'contact.dart';
 
 /// Represents a page for editing an individual contact.
+/// @author Viola Yasuda
+/// @version 11/18/2021
 class EditingContact extends StatelessWidget {
   final Contact contact;
 
