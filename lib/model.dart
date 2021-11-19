@@ -1,17 +1,19 @@
 import 'contact.dart';
 import 'view.dart';
+import 'contacts_database.dart';
+import 'dart:async';
 
 /// Represents a model. Holds the data for the Spartan Contacts app.
 /// @author Viola Yasuda
 /// @version 11/16/2021
 class Model {
-  List<Contact> fullContactsList;
+  late List<Contact> fullContactsList = converter();
   String organizationStyle;
   late List<View> views;
   late List<Contact> displayedContactsList;
 
   /// Constructs a Model object.
-  Model(this.fullContactsList, this.organizationStyle) {
+  Model(this.organizationStyle) {
     views = <View>[];
     displayedContactsList = fullContactsList;
   }
@@ -22,13 +24,27 @@ class Model {
   }
 
   /// Updates the full contacts list.
-  void setFullContactsList(List<Contact> fullContactsList) {
-    this.fullContactsList = fullContactsList;
+  void setFullContactsList() {
+    fullContactsList = converter();
     //update displayedContactsList
+  }
+
+  /// Helper method for setFullContactsList().
+  /// Converts async contacts list from getContacts() to a standard List<Contact>.
+  List<Contact> converter() {
+    Future<List<Contact>> contacts = getContacts();
+    List<Contact> toAdd = [];
+    contacts.asStream().forEach((element) {
+      for (var element in element) {
+        toAdd.add(element);
+      }
+    });
+    return toAdd;
   }
 
   /// Adds a contact to the full contacts list.
   void addContact(Contact contact) {
+    insertContact(contact);
     fullContactsList.add(contact);
     displayedContactsList = fullContactsList;
     notifyView();

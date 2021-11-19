@@ -7,9 +7,8 @@ import 'model.dart';
 import 'organization_setting.dart';
 
 ///
-void main() async {
-  List<Contact> list = await getContacts();
-  Model model = Model(list, "last name");
+void main() {
+  Model model = Model("last name");
   ContactsPage contactsPage = ContactsPage(model: model);
   OrganizationSetting organizationSetting = OrganizationSetting(model: model);
   model.registerView(organizationSetting);
