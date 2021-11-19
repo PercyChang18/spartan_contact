@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'adding_contact_page.dart';
 import 'contact.dart';
 import 'individual_contact.dart';
 import 'model.dart';
@@ -8,7 +9,7 @@ import 'sorting.dart';
 import 'view.dart';
 
 /// Represents the contacts page of the Spartan Contacts App.
-class ContactsPage extends StatefulWidget implements View {
+class ContactsPage extends StatefulWidget {
   final Model model;
 
   /// Constructs the ContactsPage.
@@ -16,16 +17,15 @@ class ContactsPage extends StatefulWidget implements View {
 
   /// Creates the state for the ContactsPage.
   @override
-  _ContactsPageState createState() => _ContactsPageState(model);
-
-  @override
-  void update() {
-    // TODO: implement update
+  _ContactsPageState createState() {
+    _ContactsPageState state = _ContactsPageState(model);
+    model.registerView(state);
+    return state;
   }
 }
 
 /// Represents the state of the contacts page of the Spartan Contacts App.
-class _ContactsPageState extends State<ContactsPage> {
+class _ContactsPageState extends State<ContactsPage> implements View {
   late Model model;
   late List<Contact> contactsList;
   late List<GestureDetector> detectorList;
@@ -34,7 +34,7 @@ class _ContactsPageState extends State<ContactsPage> {
     contactsList = model.getDisplayedContactsList();
   }
 
-  Sorting s = new Sorting();
+  Sorting s = Sorting();
 
   /// Initializes the list of GestureDetector objects for use in the build method.
   void initializeDetectorList(BuildContext context) {
@@ -98,10 +98,19 @@ class _ContactsPageState extends State<ContactsPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return AddingContact(model: model);
+          }));
+        },
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  @override
+  void update() {
+    setState(() {});
   }
 }
 

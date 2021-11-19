@@ -30,6 +30,8 @@ class Model {
   /// Adds a contact to the full contacts list.
   void addContact(Contact contact) {
     fullContactsList.add(contact);
+    displayedContactsList = fullContactsList;
+    notifyView();
   }
 
   /// Removes a contact from the full contacts list.

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'contact.dart';
+import 'contacts_database.dart';
 import 'contacts_page.dart';
 import 'model.dart';
 import 'organization_setting.dart';
-import 'contacts_database.dart';
 
 ///
 void main() async {
@@ -12,7 +12,6 @@ void main() async {
   Model model = Model(list, "last name");
   ContactsPage contactsPage = ContactsPage(model: model);
   OrganizationSetting organizationSetting = OrganizationSetting(model: model);
-  model.registerView(contactsPage);
   model.registerView(organizationSetting);
   runApp(SpartanContact(
       model: model,

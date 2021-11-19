@@ -10,7 +10,7 @@ import 'contact.dart';
 /// @author
 /// @version
 void main() async {
-  List<Contact> list = await contacts();
+  List<Contact> list = await getContacts();
   print(list);
 }
 
@@ -32,7 +32,7 @@ Future<void> insertContact(Contact contact) async {
 }
 
 ///
-Future<List<Contact>> contacts() async {
+Future<List<Contact>> getContacts() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'contact.dart';
+import 'editing_contact_page.dart';
 
 /// Represents a page for an individual contact.
 class IndividualContact extends StatelessWidget {
@@ -25,7 +26,12 @@ class IndividualContact extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.yellow),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EditingContact(contact: contact)));
+            },
           ),
         ],
       ),
