@@ -141,14 +141,6 @@ class IndividualContact extends StatelessWidget {
                 ),
               ),
             ]),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Card(
-                      color: Colors.red,
-                      child: Text('Delete Contact',
-                          style: TextStyle(fontSize: 15.0)))
-                ]),
           ],
         ),
       ),

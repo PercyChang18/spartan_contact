@@ -1,7 +1,8 @@
-import 'contact.dart';
-import 'view.dart';
-import 'contacts_database.dart';
 import 'dart:async';
+
+import 'contact.dart';
+import 'contacts_database.dart';
+import 'view.dart';
 
 /// Represents a model. Holds the data for the Spartan Contacts app.
 /// @author Viola Yasuda
