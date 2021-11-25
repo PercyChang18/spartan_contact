@@ -178,7 +178,7 @@ class AddingContact extends StatelessWidget {
                           emailController.text,
                           addressController.text,
                           websiteController.text,
-                          12));
+                          model.genID()));
                       nameController.text = "";
                       occupationController.text = "";
                       phoneController.text = "";

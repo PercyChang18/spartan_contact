@@ -69,6 +69,10 @@ class Contact {
     return website;
   }
 
+  int getID() {
+    return id;
+  }
+
   /// Updates the contact's website.
   void setWebsite(String website) {
     this.website = website;

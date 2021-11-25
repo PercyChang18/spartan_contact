@@ -104,4 +104,19 @@ class Model {
 
   /// Updates displayedContactsList so it contains results for a name search.
   void searchByName() {}
+
+  /// Generates a new ID by taking the most recent ID and incrementing by 1.
+  int genID() {
+    List<Contact> list = fullContactsList;
+    int maxID = -1;
+    for (Contact c in fullContactsList) {
+      if (c.getID() > maxID) {
+        maxID = c.getID();
+      }
+    }
+    if (maxID < 0) {
+      return 0;
+    }
+    return maxID + 1;
+  }
 }
