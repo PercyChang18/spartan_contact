@@ -52,7 +52,9 @@ class Model {
 
   /// Removes a contact from the full contacts list.
   void removeContact(Contact contact) {
+    deleteContact(contact.getID());
     fullContactsList.remove(contact);
+    displayedContactsList = fullContactsList;
   }
 
   /// Gets the organization style.
@@ -102,10 +104,40 @@ class Model {
     this.displayedContactsList = displayedContactsList;
   }
 
-  /// Updates displayedContactsList so it contains results for a name search.
-  void searchByName() {}
+  /// Returns a contacts list that contains contacts whose name contains the search query.
+  List<Contact> searchByName(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.name.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
 
-  /// Generates a new ID by taking the most recent ID and incrementing by 1.
+  /// Returns a contacts list that contains contacts whose number contains the search query.
+  List<Contact> searchByNumber(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.phone.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts with any fields containing the search query.
+  List<Contact> searchByAll(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.toString().contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Generates a new ID by taking the maximum ID and incrementing by 1.
   int genID() {
     List<Contact> list = fullContactsList;
     int maxID = -1;
