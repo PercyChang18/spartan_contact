@@ -1,27 +1,38 @@
 import 'package:flutter/material.dart';
 
 import 'contact.dart';
+import 'model.dart';
 
-/// Represents a page for editing an individual contact.
+/// Represents a page for adding an individual contact.
 /// @author Viola Yasuda
 /// @version 11/18/2021
 class EditingContact extends StatelessWidget {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final occupationController = TextEditingController();
+  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final addressController = TextEditingController();
+  final websiteController = TextEditingController();
+  final Model model;
   final Contact contact;
 
-  /// Constructs an EditingContact page.
-  const EditingContact({Key? key, required this.contact}) : super(key: key);
+  /// Constructs an AddingContact page.
+  EditingContact({Key? key, required this.contact, required this.model})
+      : super(key: key);
 
-  /// Builds the display for an EditingContact.
+  /// Builds the display for an AddingContact.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editing Contact'),
+        title: const Text('Adding Contact'),
       ),
       backgroundColor: Colors.teal,
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
                 margin: const EdgeInsets.fromLTRB(0, 0, 15.0, 0),
@@ -33,17 +44,28 @@ class EditingContact extends StatelessWidget {
                 radius: 50.0,
                 backgroundImage: AssetImage('images/profile.png'),
               ),
-              Text(
-                contact.getName(),
+              TextFormField(
+                controller: nameController,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'ZenAntique',
                   fontSize: 40.0,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
+                decoration: const InputDecoration(
+                  hintText: 'Contact Name Here',
+                ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
               ),
-              Text(
-                contact.getOccupation(),
+              TextFormField(
+                controller: occupationController,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Source Sans Pro',
                   fontSize: 20.0,
@@ -51,6 +73,15 @@ class EditingContact extends StatelessWidget {
                   letterSpacing: 2.5,
                   color: Colors.teal.shade100,
                 ),
+                decoration: const InputDecoration(
+                  hintText: 'Enter contact\'s occupation',
+                ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
               ),
               SizedBox(
                   height: 20.0,
@@ -60,26 +91,37 @@ class EditingContact extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 25.0),
                 child: ListTile(
-                    leading: const Icon(Icons.phone, color: Colors.teal),
-                    title: Text(
-                      contact.getPhone(),
-                      style: const TextStyle(
-                          color: Colors.teal,
-                          fontFamily: 'Source Sans Pro',
-                          fontSize: 20.0),
-                    )),
+                  leading: const Icon(Icons.phone, color: Colors.teal),
+                  title: TextFormField(
+                    controller: phoneController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter contact\'s phone number',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
               ),
               Card(
                 margin: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 25.0),
                 child: ListTile(
                   leading: const Icon(Icons.email, color: Colors.teal),
-                  title: Text(
-                    contact.getEmail(),
-                    style: const TextStyle(
-                        color: Colors.teal,
-                        fontFamily: 'Source Sans Pro',
-                        fontSize: 20.0),
+                  title: TextFormField(
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter contact\'s email address',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ),
@@ -87,38 +129,70 @@ class EditingContact extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 25.0),
                 child: ListTile(
-                    leading: const Icon(Icons.house, color: Colors.teal),
-                    title: Text(
-                      contact.getAddress(),
-                      style: const TextStyle(
-                          color: Colors.teal,
-                          fontFamily: 'Source Sans Pro',
-                          fontSize: 20.0),
-                    )),
+                  leading: const Icon(Icons.house, color: Colors.teal),
+                  title: TextFormField(
+                    controller: addressController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter contact\'s home address',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
               ),
               Card(
                 margin: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 25.0),
                 child: ListTile(
                   leading: const Icon(Icons.web, color: Colors.teal),
-                  title: Text(
-                    contact.getWebsite(),
-                    style: const TextStyle(
-                        color: Colors.teal,
-                        fontFamily: 'Source Sans Pro',
-                        fontSize: 20.0),
+                  title: TextFormField(
+                    controller: websiteController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter contact\'s website',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ),
             ]),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Card(
-                      color: Colors.red,
-                      child: Text('Delete Contact',
-                          style: TextStyle(fontSize: 15.0)))
-                ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Validate will return true if the form is valid, or false if
+                    // the form is invalid.
+                    if (_formKey.currentState!.validate()) {
+                      // Process data.
+                      model.addContact(Contact(
+                          nameController.text,
+                          occupationController.text,
+                          phoneController.text,
+                          emailController.text,
+                          addressController.text,
+                          websiteController.text,
+                          model.genID()));
+                      nameController.text = "";
+                      occupationController.text = "";
+                      phoneController.text = "";
+                      emailController.text = "";
+                      addressController.text = "";
+                      websiteController.text = "";
+                    }
+                  },
+                  child: const Text('Submit'),
+                ),
+              ),
+            ]),
           ],
         ),
       ),

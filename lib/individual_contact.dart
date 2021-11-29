@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'contact.dart';
 import 'editing_contact_page.dart';
+import 'model.dart';
 
 /// Represents a page for an individual contact.
 class IndividualContact extends StatelessWidget {
   final Contact contact;
+  final Model model;
 
   /// Constructs an IndividualContact page.
-  const IndividualContact({Key? key, required this.contact}) : super(key: key);
+  const IndividualContact(
+      {Key? key, required this.contact, required this.model})
+      : super(key: key);
 
   /// Builds the display for an IndividualContact.
   @override
@@ -30,7 +34,8 @@ class IndividualContact extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => EditingContact(contact: contact)));
+                      builder: (context) =>
+                          EditingContact(contact: contact, model: model)));
             },
           ),
         ],

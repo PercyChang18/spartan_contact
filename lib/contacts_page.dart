@@ -49,8 +49,8 @@ class _ContactsPageState extends State<ContactsPage> implements View {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        IndividualContact(contact: contactsList[i])));
+                    builder: (context) => IndividualContact(
+                        contact: contactsList[i], model: model)));
           },
         ),
       );

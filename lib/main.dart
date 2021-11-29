@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'contact.dart';
-import 'contacts_database.dart';
 import 'contacts_page.dart';
 import 'model.dart';
 import 'organization_setting.dart';
