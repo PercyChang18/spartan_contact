@@ -200,6 +200,50 @@ class Model {
     return toReturn;
   }
 
+  /// Returns a contacts list that contains contacts whose occupation contains the search query.
+  List<Contact> searchByOccupation(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.occupation.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts whose email contains the search query.
+  List<Contact> searchByEmail(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.email.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts whose address contains the search query.
+  List<Contact> searchByAddress(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.address.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts whose website contains the search query.
+  List<Contact> searchByWebsite(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.website.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
   /// Generates a new ID by taking the maximum ID and incrementing by 1.
   int genID() {
     List<Contact> list = fullContactsList;
