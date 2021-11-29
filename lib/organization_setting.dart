@@ -27,19 +27,24 @@ class OrganizationSetting extends StatefulWidget implements View {
 }
 
 ///
-class _OrganizationSettingState extends State<OrganizationSetting> implements View{
-
-  bool nameIsSelected = true;
-  bool customLabelIsSelected = false;
-  bool occupationIsSelected = false;
-  bool phoneIsSelected = false;
-  bool emailIsSelected = false;
-
+class _OrganizationSettingState extends State<OrganizationSetting>
+    implements View {
   late Model model;
+  late bool nameIsSelected;
+  late bool customLabelIsSelected;
+  late bool occupationIsSelected = false;
+  late bool phoneIsSelected = false;
+  late bool emailIsSelected = false;
+
   late List<Contact> contactsList;
 
   _OrganizationSettingState(this.model) {
     contactsList = model.getDisplayedContactsList();
+    nameIsSelected = model.getOrganizationStyle() == "name";
+    customLabelIsSelected = model.getOrganizationStyle() == "custom";
+    occupationIsSelected = model.getOrganizationStyle() == "occupation";
+    phoneIsSelected = model.getOrganizationStyle() == "phone";
+    emailIsSelected = model.getOrganizationStyle() == "email";
   }
 
   void sortttt() {
@@ -49,6 +54,7 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
       contactsList.sort((a, b) => a.getName().compareTo(b.getName()));
     }
   }
+
   ///
   @override
   Widget build(BuildContext context) {
@@ -72,6 +78,7 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
                     phoneIsSelected = false;
                     emailIsSelected = false;
                   });
+                  model.setOrganizationStyle("name");
                 },
                 child: OrganizationButton(
                   'Name',
@@ -91,6 +98,7 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
                     phoneIsSelected = false;
                     emailIsSelected = false;
                   });
+                  model.setOrganizationStyle("custom");
                 },
                 child: OrganizationButton(
                   'Custom Label',
@@ -110,6 +118,7 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
                     phoneIsSelected = false;
                     emailIsSelected = false;
                   });
+                  model.setOrganizationStyle("occupation");
                 },
                 child: OrganizationButton(
                   'Occupation',
@@ -129,6 +138,7 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
                     phoneIsSelected = true;
                     emailIsSelected = false;
                   });
+                  model.setOrganizationStyle("phone");
                 },
                 child: OrganizationButton(
                   'Phone',
@@ -141,7 +151,6 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  sortttt();
                   setState(() {
                     nameIsSelected = false;
                     customLabelIsSelected = false;
@@ -149,6 +158,7 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
                     phoneIsSelected = false;
                     emailIsSelected = true;
                   });
+                  model.setOrganizationStyle("email");
                 },
                 child: OrganizationButton(
                   'Email',
@@ -174,4 +184,3 @@ class _OrganizationSettingState extends State<OrganizationSetting> implements Vi
     setState(() {});
   }
 }
-

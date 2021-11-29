@@ -14,6 +14,7 @@ class EditingContact extends StatelessWidget {
   final emailController = TextEditingController();
   final addressController = TextEditingController();
   final websiteController = TextEditingController();
+
   final Model model;
   final Contact contact;
 
@@ -24,6 +25,12 @@ class EditingContact extends StatelessWidget {
   /// Builds the display for an AddingContact.
   @override
   Widget build(BuildContext context) {
+    nameController.text = contact.getName();
+    occupationController.text = contact.getOccupation();
+    phoneController.text = contact.getPhone();
+    emailController.text = contact.getEmail();
+    addressController.text = contact.getAddress();
+    websiteController.text = contact.getWebsite();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Adding Contact'),
@@ -173,23 +180,30 @@ class EditingContact extends StatelessWidget {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                       // Process data.
-                      model.addContact(Contact(
-                          nameController.text,
-                          occupationController.text,
-                          phoneController.text,
-                          emailController.text,
-                          addressController.text,
-                          websiteController.text,
-                          model.genID()));
-                      nameController.text = "";
-                      occupationController.text = "";
-                      phoneController.text = "";
-                      emailController.text = "";
-                      addressController.text = "";
-                      websiteController.text = "";
+                      contact.setName(nameController.text);
+                      contact.setOccupation(occupationController.text);
+                      contact.setPhone(phoneController.text);
+                      contact.setEmail(emailController.text);
+                      contact.setAddress(addressController.text);
+                      contact.setWebsite(websiteController.text);
+                      model.notifyView();
                     }
                   },
-                  child: const Text('Submit'),
+                  child: const Text('Update Contact'),
+                ),
+              ),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    model.removeContact(contact);
+                  },
+                  child: const Text('Delete Contact'),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.red)),
                 ),
               ),
             ]),

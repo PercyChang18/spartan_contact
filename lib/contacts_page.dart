@@ -5,7 +5,6 @@ import 'adding_contact_page.dart';
 import 'contact.dart';
 import 'individual_contact.dart';
 import 'model.dart';
-import 'sorting.dart';
 import 'view.dart';
 
 /// Represents the contacts page of the Spartan Contacts App.
@@ -34,12 +33,9 @@ class _ContactsPageState extends State<ContactsPage> implements View {
     contactsList = model.getDisplayedContactsList();
   }
 
-  Sorting s = Sorting();
-
   /// Initializes the list of GestureDetector objects for use in the build method.
   void initializeDetectorList(BuildContext context) {
     detectorList = <GestureDetector>[];
-    s.sortByEmail(contactsList); //Hard coded sorting method.
     for (int i = 0; i < contactsList.length; i++) {
       detectorList.add(
         GestureDetector(
