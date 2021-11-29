@@ -48,7 +48,7 @@ class Model {
     insertContact(contact);
     fullContactsList.add(contact);
     displayedContactsList = fullContactsList;
-    notifyView();
+    setOrganizationStyle(organizationStyle);
   }
 
   /// Removes a contact from the full contacts list.
@@ -56,6 +56,7 @@ class Model {
     deleteContact(contact.getID());
     fullContactsList.remove(contact);
     displayedContactsList = fullContactsList;
+    setOrganizationStyle(organizationStyle);
   }
 
   /// Gets the organization style.
@@ -66,6 +67,22 @@ class Model {
   /// Updates the organization style.
   void setOrganizationStyle(String organizationStyle) {
     this.organizationStyle = organizationStyle;
+    if (organizationStyle == "name") {
+      displayedContactsList.sort((a, b) =>
+          a.getName().toLowerCase().compareTo(b.getName().toLowerCase()));
+    } else if (organizationStyle == "occupation") {
+      displayedContactsList.sort((a, b) => a
+          .getOccupation()
+          .toLowerCase()
+          .compareTo(b.getOccupation().toLowerCase()));
+    } else if (organizationStyle == "phone") {
+      displayedContactsList
+          .sort((a, b) => a.getPhone().compareTo(b.getPhone()));
+    } else if (organizationStyle == "email") {
+      displayedContactsList.sort((a, b) =>
+          a.getEmail().toLowerCase().compareTo(b.getEmail().toLowerCase()));
+    }
+    notifyView();
   }
 
   /// Gets the views.

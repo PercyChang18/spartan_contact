@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'contact.dart';
 import 'model.dart';
 import 'organization_button.dart';
 import 'view.dart';
@@ -14,7 +15,10 @@ class OrganizationSetting extends StatefulWidget implements View {
 
   ///
   @override
-  _OrganizationSettingState createState() => _OrganizationSettingState();
+  _OrganizationSettingState createState() {
+    _OrganizationSettingState state = _OrganizationSettingState(model);
+    return state;
+  }
 
   @override
   void update() {
@@ -23,13 +27,33 @@ class OrganizationSetting extends StatefulWidget implements View {
 }
 
 ///
-class _OrganizationSettingState extends State<OrganizationSetting> {
-  bool lastNameIsSelected = false;
-  bool firstNameIsSelected = false;
-  bool customLabelIsSelected = false;
-  bool occupationIsSelected = false;
-  bool phoneIsSelected = false;
-  bool emailIsSelected = false;
+class _OrganizationSettingState extends State<OrganizationSetting>
+    implements View {
+  late Model model;
+  late bool nameIsSelected;
+  late bool customLabelIsSelected;
+  late bool occupationIsSelected = false;
+  late bool phoneIsSelected = false;
+  late bool emailIsSelected = false;
+
+  late List<Contact> contactsList;
+
+  _OrganizationSettingState(this.model) {
+    contactsList = model.getDisplayedContactsList();
+    nameIsSelected = model.getOrganizationStyle() == "name";
+    customLabelIsSelected = model.getOrganizationStyle() == "custom";
+    occupationIsSelected = model.getOrganizationStyle() == "occupation";
+    phoneIsSelected = model.getOrganizationStyle() == "phone";
+    emailIsSelected = model.getOrganizationStyle() == "email";
+  }
+
+  void sortttt() {
+    if (emailIsSelected == false) {
+      contactsList.sort((a, b) => a.getEmail().compareTo(b.getEmail()));
+    } else {
+      contactsList.sort((a, b) => a.getName().compareTo(b.getName()));
+    }
+  }
 
   ///
   @override
@@ -48,12 +72,17 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    lastNameIsSelected = !lastNameIsSelected;
+                    nameIsSelected = true;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
                   });
+                  model.setOrganizationStyle("name");
                 },
                 child: OrganizationButton(
-                  'Last Name',
-                  lastNameIsSelected
+                  'Name',
+                  nameIsSelected
                       ? kButtonSelectedColor
                       : kButtonNotSelectedColor,
                 ),
@@ -63,23 +92,13 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    firstNameIsSelected = !firstNameIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = true;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
                   });
-                },
-                child: OrganizationButton(
-                  'First Name',
-                  firstNameIsSelected
-                      ? kButtonSelectedColor
-                      : kButtonNotSelectedColor,
-                ),
-              ),
-            ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    customLabelIsSelected = !customLabelIsSelected;
-                  });
+                  model.setOrganizationStyle("custom");
                 },
                 child: OrganizationButton(
                   'Custom Label',
@@ -93,8 +112,13 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    occupationIsSelected = !occupationIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = true;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
                   });
+                  model.setOrganizationStyle("occupation");
                 },
                 child: OrganizationButton(
                   'Occupation',
@@ -108,8 +132,13 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    phoneIsSelected = !phoneIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = true;
+                    emailIsSelected = false;
                   });
+                  model.setOrganizationStyle("phone");
                 },
                 child: OrganizationButton(
                   'Phone',
@@ -123,8 +152,13 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    emailIsSelected = !emailIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = true;
                   });
+                  model.setOrganizationStyle("email");
                 },
                 child: OrganizationButton(
                   'Email',
@@ -143,5 +177,10 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
         ),
       ),
     );
+  }
+
+  @override
+  void update() {
+    setState(() {});
   }
 }
