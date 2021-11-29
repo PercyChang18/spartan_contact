@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'contact.dart';
 import 'model.dart';
 import 'organization_button.dart';
 import 'view.dart';
@@ -14,7 +15,10 @@ class OrganizationSetting extends StatefulWidget implements View {
 
   ///
   @override
-  _OrganizationSettingState createState() => _OrganizationSettingState();
+  _OrganizationSettingState createState() {
+    _OrganizationSettingState state = _OrganizationSettingState(model);
+    return state;
+  }
 
   @override
   void update() {
@@ -23,14 +27,28 @@ class OrganizationSetting extends StatefulWidget implements View {
 }
 
 ///
-class _OrganizationSettingState extends State<OrganizationSetting> {
-  bool lastNameIsSelected = false;
-  bool firstNameIsSelected = false;
+class _OrganizationSettingState extends State<OrganizationSetting> implements View{
+
+  bool nameIsSelected = true;
   bool customLabelIsSelected = false;
   bool occupationIsSelected = false;
   bool phoneIsSelected = false;
   bool emailIsSelected = false;
 
+  late Model model;
+  late List<Contact> contactsList;
+
+  _OrganizationSettingState(this.model) {
+    contactsList = model.getDisplayedContactsList();
+  }
+
+  void sortttt() {
+    if (emailIsSelected == false) {
+      contactsList.sort((a, b) => a.getEmail().compareTo(b.getEmail()));
+    } else {
+      contactsList.sort((a, b) => a.getName().compareTo(b.getName()));
+    }
+  }
   ///
   @override
   Widget build(BuildContext context) {
@@ -48,12 +66,16 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    lastNameIsSelected = !lastNameIsSelected;
+                    nameIsSelected = true;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
                   });
                 },
                 child: OrganizationButton(
-                  'Last Name',
-                  lastNameIsSelected
+                  'Name',
+                  nameIsSelected
                       ? kButtonSelectedColor
                       : kButtonNotSelectedColor,
                 ),
@@ -63,22 +85,11 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    firstNameIsSelected = !firstNameIsSelected;
-                  });
-                },
-                child: OrganizationButton(
-                  'First Name',
-                  firstNameIsSelected
-                      ? kButtonSelectedColor
-                      : kButtonNotSelectedColor,
-                ),
-              ),
-            ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    customLabelIsSelected = !customLabelIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = true;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
                   });
                 },
                 child: OrganizationButton(
@@ -93,7 +104,11 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    occupationIsSelected = !occupationIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = true;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
                   });
                 },
                 child: OrganizationButton(
@@ -108,7 +123,11 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    phoneIsSelected = !phoneIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = true;
+                    emailIsSelected = false;
                   });
                 },
                 child: OrganizationButton(
@@ -122,8 +141,13 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
             Expanded(
               child: GestureDetector(
                 onTap: () {
+                  sortttt();
                   setState(() {
-                    emailIsSelected = !emailIsSelected;
+                    nameIsSelected = false;
+                    customLabelIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = true;
                   });
                 },
                 child: OrganizationButton(
@@ -144,4 +168,10 @@ class _OrganizationSettingState extends State<OrganizationSetting> {
       ),
     );
   }
+
+  @override
+  void update() {
+    setState(() {});
+  }
 }
+
