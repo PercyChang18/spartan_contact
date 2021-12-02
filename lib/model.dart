@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:path/path.dart';
-
 import 'contact.dart';
 import 'contacts_database.dart';
 import 'view.dart';
@@ -74,6 +72,11 @@ class Model {
           .getFirstName()
           .toLowerCase()
           .compareTo(b.getFirstName().toLowerCase()));
+    } else if (organizationStyle == "last name") {
+      displayedContactsList.sort((a, b) => a
+          .getLastName()
+          .toLowerCase()
+          .compareTo(b.getLastName().toLowerCase()));
     } else if (organizationStyle == "occupation") {
       displayedContactsList.sort((a, b) => a
           .getOccupation()
@@ -85,11 +88,6 @@ class Model {
     } else if (organizationStyle == "email") {
       displayedContactsList.sort((a, b) =>
           a.getEmail().toLowerCase().compareTo(b.getEmail().toLowerCase()));
-    } else if (organizationStyle == "last name") {
-      displayedContactsList.sort((a, b) => a
-          .getLastName()
-          .toLowerCase()
-          .compareTo(b.getLastName().toLowerCase()));
     }
     notifyView();
   }
