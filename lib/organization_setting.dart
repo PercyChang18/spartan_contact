@@ -51,7 +51,7 @@ class _OrganizationSettingState extends State<OrganizationSetting>
     if (emailIsSelected == false) {
       contactsList.sort((a, b) => a.getEmail().compareTo(b.getEmail()));
     } else {
-      contactsList.sort((a, b) => a.getName().compareTo(b.getName()));
+      contactsList.sort((a, b) => a.getFullName().compareTo(b.getFullName()));
     }
   }
 

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:path/path.dart';
+
 import 'contact.dart';
 import 'contacts_database.dart';
 import 'view.dart';
@@ -67,9 +69,11 @@ class Model {
   /// Updates the organization style.
   void setOrganizationStyle(String organizationStyle) {
     this.organizationStyle = organizationStyle;
-    if (organizationStyle == "name") {
-      displayedContactsList.sort((a, b) =>
-          a.getName().toLowerCase().compareTo(b.getName().toLowerCase()));
+    if (organizationStyle == "first name") {
+      displayedContactsList.sort((a, b) => a
+          .getFirstName()
+          .toLowerCase()
+          .compareTo(b.getFirstName().toLowerCase()));
     } else if (organizationStyle == "occupation") {
       displayedContactsList.sort((a, b) => a
           .getOccupation()
@@ -81,6 +85,11 @@ class Model {
     } else if (organizationStyle == "email") {
       displayedContactsList.sort((a, b) =>
           a.getEmail().toLowerCase().compareTo(b.getEmail().toLowerCase()));
+    } else if (organizationStyle == "last name") {
+      displayedContactsList.sort((a, b) => a
+          .getLastName()
+          .toLowerCase()
+          .compareTo(b.getLastName().toLowerCase()));
     }
     notifyView();
   }
@@ -126,7 +135,7 @@ class Model {
   List<Contact> searchByName(String search) {
     List<Contact> toReturn = [];
     for (Contact c in fullContactsList) {
-      if (c.name.contains(search)) {
+      if (c.fullName.contains(search)) {
         toReturn.add(c);
       }
     }
@@ -212,5 +221,11 @@ class Model {
       return 0;
     }
     return maxID + 1;
+  }
+
+  List<String> nameParse(String fullName) {
+    List<String> full = fullName.split(" ");
+    List<String> ret = [full[0], full[full.length - 1]];
+    return ret;
   }
 }

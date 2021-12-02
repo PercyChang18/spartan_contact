@@ -18,16 +18,16 @@ Future<void> insertContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts1_database.db'),
+    join(await getDatabasesPath(), 'contacts2_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts1(id INTEGER PRIMARY KEY, name TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
     },
     version: 1,
   );
 
   final db = await database;
-  await db.insert('contacts1', contact.toMap(),
+  await db.insert('contacts2', contact.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace);
 }
 
@@ -36,18 +36,20 @@ Future<List<Contact>> getContacts() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts1_database.db'),
+    join(await getDatabasesPath(), 'contacts2_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts1(id INTEGER PRIMARY KEY, name TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
     },
     version: 1,
   );
   final db = await database;
-  final List<Map<String, dynamic>> maps = await db.query("contacts1");
+  final List<Map<String, dynamic>> maps = await db.query("contacts2");
   return List.generate(maps.length, (i) {
     return Contact(
-      maps[i]['name'],
+      maps[i]['fullName'],
+      maps[i]['firstName'],
+      maps[i]['lastName'],
       maps[i]['occupation'],
       maps[i]['phone'],
       maps[i]['email'],
@@ -63,17 +65,17 @@ Future<void> updateContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts1_database.db'),
+    join(await getDatabasesPath(), 'contacts2_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts1(id INTEGER PRIMARY KEY, name TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
     },
     version: 1,
   );
   final db = await database;
 
   await db.update(
-    'contacts1',
+    'contacts2',
     contact.toMap(),
     where: 'id = ?',
     whereArgs: [contact.id],
@@ -85,16 +87,16 @@ Future<void> deleteContact(int id) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts1_database.db'),
+    join(await getDatabasesPath(), 'contacts2_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts1(id INTEGER PRIMARY KEY, name TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
     },
     version: 1,
   );
   final db = await database;
   await db.delete(
-    'contacts1',
+    'contacts2',
     where: 'id = ?',
     whereArgs: [id],
   );

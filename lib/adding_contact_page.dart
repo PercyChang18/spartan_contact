@@ -171,8 +171,11 @@ class AddingContact extends StatelessWidget {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                       // Process data.
+                      List<String> name = nameController.text.split(" ");
                       model.addContact(Contact(
                           nameController.text,
+                          name[0],
+                          name[name.length - 1],
                           occupationController.text,
                           phoneController.text,
                           emailController.text,

@@ -127,7 +127,7 @@ class ContactContainer extends StatelessWidget {
       margin: const EdgeInsets.all(5),
       child: Row(
         children: <Widget>[
-          Text(contact.getName()),
+          Text(contact.getFullName()),
         ],
       ),
     );

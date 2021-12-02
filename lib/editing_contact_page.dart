@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'contacts_database.dart';
 import 'contact.dart';
 import 'model.dart';
 
@@ -25,7 +25,7 @@ class EditingContact extends StatelessWidget {
   /// Builds the display for an AddingContact.
   @override
   Widget build(BuildContext context) {
-    nameController.text = contact.getName();
+    nameController.text = contact.getFullName();
     occupationController.text = contact.getOccupation();
     phoneController.text = contact.getPhone();
     emailController.text = contact.getEmail();
@@ -186,6 +186,7 @@ class EditingContact extends StatelessWidget {
                       contact.setEmail(emailController.text);
                       contact.setAddress(addressController.text);
                       contact.setWebsite(websiteController.text);
+                      updateContact(contact);
                       model.notifyView();
                     }
                   },
