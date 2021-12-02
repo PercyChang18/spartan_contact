@@ -30,29 +30,21 @@ class OrganizationSetting extends StatefulWidget implements View {
 class _OrganizationSettingState extends State<OrganizationSetting>
     implements View {
   late Model model;
-  late bool nameIsSelected;
-  late bool customLabelIsSelected;
-  late bool occupationIsSelected = false;
-  late bool phoneIsSelected = false;
-  late bool emailIsSelected = false;
+  late bool firstNameIsSelected;
+  late bool lastNameIsSelected;
+  late bool occupationIsSelected;
+  late bool phoneIsSelected;
+  late bool emailIsSelected;
 
   late List<Contact> contactsList;
 
   _OrganizationSettingState(this.model) {
     contactsList = model.getDisplayedContactsList();
-    nameIsSelected = model.getOrganizationStyle() == "name";
-    customLabelIsSelected = model.getOrganizationStyle() == "custom";
+    firstNameIsSelected = model.getOrganizationStyle() == "first name";
+    lastNameIsSelected = model.getOrganizationStyle() == "last name";
     occupationIsSelected = model.getOrganizationStyle() == "occupation";
     phoneIsSelected = model.getOrganizationStyle() == "phone";
     emailIsSelected = model.getOrganizationStyle() == "email";
-  }
-
-  void sortttt() {
-    if (emailIsSelected == false) {
-      contactsList.sort((a, b) => a.getEmail().compareTo(b.getEmail()));
-    } else {
-      contactsList.sort((a, b) => a.getName().compareTo(b.getName()));
-    }
   }
 
   ///
@@ -72,17 +64,17 @@ class _OrganizationSettingState extends State<OrganizationSetting>
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    nameIsSelected = true;
-                    customLabelIsSelected = false;
+                    firstNameIsSelected = true;
+                    lastNameIsSelected = false;
                     occupationIsSelected = false;
                     phoneIsSelected = false;
                     emailIsSelected = false;
                   });
-                  model.setOrganizationStyle("name");
+                  model.setOrganizationStyle("first name");
                 },
                 child: OrganizationButton(
-                  'Name',
-                  nameIsSelected
+                  'First Name',
+                  firstNameIsSelected
                       ? kButtonSelectedColor
                       : kButtonNotSelectedColor,
                 ),
@@ -92,17 +84,17 @@ class _OrganizationSettingState extends State<OrganizationSetting>
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    nameIsSelected = false;
-                    customLabelIsSelected = true;
+                    firstNameIsSelected = false;
+                    lastNameIsSelected = true;
                     occupationIsSelected = false;
                     phoneIsSelected = false;
                     emailIsSelected = false;
                   });
-                  model.setOrganizationStyle("custom");
+                  model.setOrganizationStyle("last name");
                 },
                 child: OrganizationButton(
-                  'Custom Label',
-                  customLabelIsSelected
+                  'Last Name',
+                  lastNameIsSelected
                       ? kButtonSelectedColor
                       : kButtonNotSelectedColor,
                 ),
@@ -112,8 +104,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    nameIsSelected = false;
-                    customLabelIsSelected = false;
+                    firstNameIsSelected = false;
+                    lastNameIsSelected = false;
                     occupationIsSelected = true;
                     phoneIsSelected = false;
                     emailIsSelected = false;
@@ -132,8 +124,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    nameIsSelected = false;
-                    customLabelIsSelected = false;
+                    firstNameIsSelected = false;
+                    lastNameIsSelected = false;
                     occupationIsSelected = false;
                     phoneIsSelected = true;
                     emailIsSelected = false;
@@ -152,8 +144,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    nameIsSelected = false;
-                    customLabelIsSelected = false;
+                    firstNameIsSelected = false;
+                    lastNameIsSelected = false;
                     occupationIsSelected = false;
                     phoneIsSelected = false;
                     emailIsSelected = true;

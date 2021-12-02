@@ -69,7 +69,7 @@ class IndividualContact extends StatelessWidget {
                 backgroundImage: AssetImage('images/profile.png'),
               ),
               Text(
-                contact.getName(),
+                contact.getFullName(),
                 style: const TextStyle(
                   fontFamily: 'ZenAntique',
                   fontSize: 40.0,

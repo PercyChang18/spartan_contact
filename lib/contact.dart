@@ -2,7 +2,9 @@
 /// @author Viola Yasuda
 /// @version 11/16/2021
 class Contact {
-  String name;
+  String fullName;
+  String firstName;
+  String lastName;
   String occupation;
   String phone;
   String email;
@@ -11,17 +13,30 @@ class Contact {
   int id;
 
   /// Constructs a Contact.
-  Contact(this.name, this.occupation, this.phone, this.email, this.address,
-      this.website, this.id);
+  Contact(this.fullName, this.firstName, this.lastName, this.occupation,
+      this.phone, this.email, this.address, this.website, this.id);
 
-  /// Gets the contact's name.
-  String getName() {
-    return name;
+  /// Gets the contact's full name.
+  String getFullName() {
+    return fullName;
+  }
+
+  /// Gets the contact's first name.
+  String getFirstName() {
+    return firstName;
+  }
+
+  /// Gets the contact's last name.
+  String getLastName() {
+    return lastName;
   }
 
   /// Updates the contact's name.
   void setName(String name) {
-    this.name = name;
+    fullName = name;
+    List<String> full = name.split(" ");
+    firstName = full[0];
+    lastName = full[full.length - 1];
   }
 
   /// Gets the contact's occupation.
@@ -82,7 +97,9 @@ class Contact {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'name': name,
+      'fullName': fullName,
+      'firstName': firstName,
+      'lastName': lastName,
       'occupation': occupation,
       'phone': phone,
       'email': email,
@@ -94,6 +111,6 @@ class Contact {
   /// Returns the contact's information in the form of a String.
   @override
   String toString() {
-    return 'Contact {id: $id, name: $name, occupation: $occupation, phone: $phone, email: $email, address: $address, website: $website}';
+    return 'Contact {id: $id, name: $fullName, occupation: $occupation, phone: $phone, email: $email, address: $address, website: $website}';
   }
 }

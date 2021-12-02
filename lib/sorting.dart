@@ -2,7 +2,8 @@ import 'contact.dart';
 
 class Sorting {
   void sortByName(List<Contact> contactList) {
-    contactList.sort((a, b) => a.getName().toString().compareTo(b.getName().toString()));
+    contactList.sort((a, b) =>
+        a.getFullName().toString().compareTo(b.getFullName().toString()));
   }
 
   void sortByEmail(List<Contact> contactList) {
