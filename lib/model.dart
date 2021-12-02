@@ -129,6 +129,11 @@ class Model {
     this.displayedContactsList = displayedContactsList;
   }
 
+  void resetList() {
+    displayedContactsList = fullContactsList;
+    setOrganizationStyle(organizationStyle);
+  }
+
   /// Returns a contacts list that contains contacts whose name contains the search query.
   void searchByName(String search) {
     List<Contact> toReturn = [];
@@ -138,7 +143,7 @@ class Model {
       }
     }
     displayedContactsList = toReturn;
-    notifyView();
+    setOrganizationStyle(organizationStyle);
   }
 
   /// Returns a contacts list that contains contacts whose number contains the search query.
