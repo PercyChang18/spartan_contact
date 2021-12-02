@@ -130,14 +130,15 @@ class Model {
   }
 
   /// Returns a contacts list that contains contacts whose name contains the search query.
-  List<Contact> searchByName(String search) {
+  void searchByName(String search) {
     List<Contact> toReturn = [];
     for (Contact c in fullContactsList) {
       if (c.fullName.contains(search)) {
         toReturn.add(c);
       }
     }
-    return toReturn;
+    displayedContactsList = toReturn;
+    notifyView();
   }
 
   /// Returns a contacts list that contains contacts whose number contains the search query.

@@ -28,6 +28,7 @@ class _ContactsPageState extends State<ContactsPage> implements View {
   late Model model;
   late List<Contact> contactsList;
   late List<GestureDetector> detectorList;
+  final searchController = TextEditingController();
 
   _ContactsPageState(this.model) {
     contactsList = model.getDisplayedContactsList();
@@ -73,22 +74,56 @@ class _ContactsPageState extends State<ContactsPage> implements View {
         ],
       ),
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(5)),
-              padding: const EdgeInsets.all(4),
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-              child: Row(
-                children: const <Widget>[
-                  Icon(
-                    Icons.search,
-                    color: Colors.teal,
-                  ),
-                ],
+            Card(
+              margin:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+              color: Colors.white,
+              child: ListTile(
+                //leading: const Icon(Icons.search, color: Colors.teal),
+                title: TextFormField(
+                  style: TextStyle(color: Colors.teal),
+                  decoration: InputDecoration(
+                      prefixIcon: IconButton(
+                        color: Colors.teal,
+                        onPressed: () {
+                          model.searchByName(searchController.text);
+                        },
+                        icon: Icon(Icons.search),
+                      ),
+                      suffixIcon: IconButton(
+                        color: Colors.teal,
+                        onPressed: searchController.clear,
+                        icon: Icon(Icons.clear),
+                      ),
+                      hintText: "Enter search query here.",
+                      hintStyle:
+                          TextStyle(fontSize: 15.0, color: Colors.redAccent)),
+                  controller: searchController,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
               ),
             ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //       color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            //   padding: const EdgeInsets.all(4),
+            //   margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            //   child: Row(
+            //     children: const <Widget>[
+            //       Icon(
+            //         Icons.search,
+            //         color: Colors.teal,
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Column(children: detectorList),
           ],
         ),
