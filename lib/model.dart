@@ -138,7 +138,7 @@ class Model {
   void searchByName(String search) {
     List<Contact> toReturn = [];
     for (Contact c in fullContactsList) {
-      if (c.fullName.contains(search)) {
+      if (c.fullName.toLowerCase().contains(search.toLowerCase())) {
         toReturn.add(c);
       }
     }
