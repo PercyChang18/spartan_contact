@@ -88,6 +88,12 @@ class Model {
     } else if (organizationStyle == "email") {
       displayedContactsList.sort((a, b) =>
           a.getEmail().toLowerCase().compareTo(b.getEmail().toLowerCase()));
+    } else if (organizationStyle == "home address") {
+      displayedContactsList.sort((a, b) =>
+          a.getAddress().toLowerCase().compareTo(b.getAddress().toLowerCase()));
+    } else if (organizationStyle == "website") {
+      displayedContactsList.sort((a, b) =>
+      a.getWebsite().toLowerCase().compareTo(b.getWebsite().toLowerCase()));
     }
     notifyView();
   }
@@ -147,51 +153,69 @@ class Model {
   }
 
   /// Returns a contacts list that contains contacts whose number contains the search query.
-  void searchByPhone(String search) {
+  List<Contact> searchByNumber(String search) {
     List<Contact> toReturn = [];
     for (Contact c in fullContactsList) {
       if (c.phone.contains(search)) {
         toReturn.add(c);
       }
     }
-    displayedContactsList = toReturn;
-    setOrganizationStyle(organizationStyle);
-  }
-
-  /// Returns a contacts list that contains contacts whose email contains the search query.
-  void searchByEmail(String search) {
-    List<Contact> toReturn = [];
-    for (Contact c in fullContactsList) {
-      if (c.email.contains(search)) {
-        toReturn.add(c);
-      }
-    }
-    displayedContactsList = toReturn;
-    setOrganizationStyle(organizationStyle);
-  }
-
-  /// Returns a contacts list that contains contacts whose occupation contains the search query.
-  void searchByOccupation(String search) {
-    List<Contact> toReturn = [];
-    for (Contact c in fullContactsList) {
-      if (c.occupation.contains(search)) {
-        toReturn.add(c);
-      }
-    }
-    displayedContactsList = toReturn;
-    setOrganizationStyle(organizationStyle);
+    return toReturn;
   }
 
   /// Returns a contacts list that contains contacts with any fields containing the search query.
-  void searchByAll(String search) {
+  List<Contact> searchByAll(String search) {
     List<Contact> toReturn = [];
     for (Contact c in fullContactsList) {
       if (c.toString().contains(search)) {
         toReturn.add(c);
       }
     }
-    displayedContactsList = toReturn;
-    setOrganizationStyle(organizationStyle);
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts whose occupation contains the search query.
+  List<Contact> searchByOccupation(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.occupation.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts whose email contains the search query.
+  List<Contact> searchByEmail(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.email.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts whose address contains the search query.
+  List<Contact> searchByAddress(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.address.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
+  }
+
+  /// Returns a contacts list that contains contacts whose website contains the search query.
+  List<Contact> searchByWebsite(String search) {
+    List<Contact> toReturn = [];
+    for (Contact c in fullContactsList) {
+      if (c.website.contains(search)) {
+        toReturn.add(c);
+      }
+    }
+    return toReturn;
   }
 
   /// Generates a new ID by taking the maximum ID and incrementing by 1.
