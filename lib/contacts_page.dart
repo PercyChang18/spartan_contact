@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:spartan_contact/main.dart';
-
 
 import 'adding_contact_page.dart';
 import 'contact.dart';
 import 'individual_contact.dart';
 import 'model.dart';
 import 'view.dart';
-
 
 /// Represents the contacts page of the Spartan Contacts App.
 class ContactsPage extends StatefulWidget {
@@ -31,6 +28,7 @@ class _ContactsPageState extends State<ContactsPage> implements View {
   late Model model;
   late List<GestureDetector> detectorList;
   final searchController = TextEditingController();
+  String dropdownValue = 'All:';
 
   _ContactsPageState(this.model);
 
@@ -84,15 +82,33 @@ class _ContactsPageState extends State<ContactsPage> implements View {
               child: ListTile(
                 //leading: const Icon(Icons.search, color: Colors.teal),
                 title: TextFormField(
-                  style: TextStyle(color: Colors.teal),
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
-                      prefixIcon: IconButton(
-                        color: Colors.teal,
-                        onPressed: () {
-                          model.searchByName(searchController.text);
-                          print(model.getDisplayedContactsList());
+                      prefixIcon: DropdownButton<String>(
+                        value: dropdownValue,
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.teal),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.teal,
+                        ),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue = newValue!;
+                          });
                         },
-                        icon: Icon(Icons.search),
+                        items: <String>[
+                          'All:',
+                          'Name:',
+                          'Occupation:',
+                          'Phone:',
+                          'Email:'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                       suffixIcon: IconButton(
                         color: Colors.teal,
@@ -104,8 +120,25 @@ class _ContactsPageState extends State<ContactsPage> implements View {
                       ),
                       hintText: "Enter search query here.",
                       hintStyle:
-                          TextStyle(fontSize: 15.0, color: Colors.redAccent)),
+                          TextStyle(fontSize: 15.0, color: Colors.grey[60])),
                   controller: searchController,
+                  onEditingComplete: () {
+                    if (dropdownValue == 'All:') {
+                      model.searchByAll(searchController.text);
+                    }
+                    if (dropdownValue == 'Name:') {
+                      model.searchByName(searchController.text);
+                    }
+                    if (dropdownValue == 'Occupation:') {
+                      model.searchByOccupation(searchController.text);
+                    }
+                    if (dropdownValue == 'Phone:') {
+                      model.searchByPhone(searchController.text);
+                    }
+                    if (dropdownValue == 'Email:') {
+                      model.searchByEmail(searchController.text);
+                    }
+                  },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter some text';
@@ -115,20 +148,6 @@ class _ContactsPageState extends State<ContactsPage> implements View {
                 ),
               ),
             ),
-            // Container(
-            //   decoration: BoxDecoration(
-            //       color: Colors.white, borderRadius: BorderRadius.circular(5)),
-            //   padding: const EdgeInsets.all(4),
-            //   margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-            //   child: Row(
-            //     children: const <Widget>[
-            //       Icon(
-            //         Icons.search,
-            //         color: Colors.teal,
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Column(children: detectorList),
           ],
         ),
@@ -173,5 +192,3 @@ class ContactContainer extends StatelessWidget {
     );
   }
 }
-
-

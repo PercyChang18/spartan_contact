@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:spartan_contact/HomePage.dart';
-import 'package:switcher_button/switcher_button.dart';
 
-import 'ThemeModel.dart';
+//import 'package:provider/provider.dart';
+//import 'package:spartan_contact/HomePage.dart';
+//import 'package:switcher_button/switcher_button.dart';
+//import 'ThemeModel.dart';
 import 'contacts_page.dart';
 import 'model.dart';
 import 'organization_setting.dart';
@@ -27,10 +27,11 @@ class SpartanContact extends StatelessWidget {
   final OrganizationSetting organizationSetting;
 
   /// Constructs the SpartanContact object.
-  const SpartanContact({Key? key,
-    required this.model,
-    required this.contactsPage,
-    required this.organizationSetting})
+  const SpartanContact(
+      {Key? key,
+      required this.model,
+      required this.contactsPage,
+      required this.organizationSetting})
       : super(key: key);
 
   /// Builds the display of the SpartanContact object.
@@ -45,7 +46,7 @@ class SpartanContact extends StatelessWidget {
         //'/individual_contact': (context) => IndividualContact(),
       },
     );
-
+/*
     return ChangeNotifierProvider(
         create: (_) => ThemeModel(),
         child: Consumer(builder: (context,ThemeModel themeModel,child){
@@ -56,11 +57,6 @@ class SpartanContact extends StatelessWidget {
             home: HomePage(),
           );
         })
-    );
+    ); */
   }
-
-  }
-
-
-
-
+}
