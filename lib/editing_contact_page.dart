@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'contacts_database.dart';
+
 import 'contact.dart';
+import 'contacts_database.dart';
 import 'model.dart';
 
-/// Represents a page for adding an individual contact.
+/// Represents a page for editing an individual contact.
 /// @author Viola Yasuda
 /// @version 11/18/2021
 class EditingContact extends StatelessWidget {
@@ -18,11 +19,11 @@ class EditingContact extends StatelessWidget {
   final Model model;
   final Contact contact;
 
-  /// Constructs an AddingContact page.
+  /// Constructs an EditingContact page.
   EditingContact({Key? key, required this.contact, required this.model})
       : super(key: key);
 
-  /// Builds the display for an AddingContact.
+  /// Builds the display for an EditingContact.
   @override
   Widget build(BuildContext context) {
     nameController.text = contact.getFullName();
@@ -33,7 +34,7 @@ class EditingContact extends StatelessWidget {
     websiteController.text = contact.getWebsite();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adding Contact'),
+        title: const Text('Editing Contact'),
       ),
       backgroundColor: Colors.teal,
       body: Form(
@@ -144,7 +145,8 @@ class EditingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        addressController.text = "";
+                        //return 'Please enter some text';
                       }
                       return null;
                     },
@@ -163,7 +165,8 @@ class EditingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        websiteController.text = "";
+                        //return 'Please enter some text';
                       }
                       return null;
                     },
