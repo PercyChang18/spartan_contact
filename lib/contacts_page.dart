@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spartan_contact/main.dart';
+
 
 import 'adding_contact_page.dart';
 import 'contact.dart';
 import 'individual_contact.dart';
 import 'model.dart';
 import 'view.dart';
+
 
 /// Represents the contacts page of the Spartan Contacts App.
 class ContactsPage extends StatefulWidget {
@@ -170,3 +173,5 @@ class ContactContainer extends StatelessWidget {
     );
   }
 }
+
+

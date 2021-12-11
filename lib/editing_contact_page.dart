@@ -202,6 +202,28 @@ class EditingContact extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: () {
+                    // Validate will return true if the form is valid, or false if
+                    // the form is invalid.
+                    if (_formKey.currentState!.validate()) {
+                      // Process data.
+                      contact.setName(nameController.text);
+                      contact.setOccupation(occupationController.text);
+                      contact.setPhone(phoneController.text);
+                      contact.setEmail(emailController.text);
+                      contact.setAddress(addressController.text);
+                      contact.setWebsite(websiteController.text);
+                      model.notifyView();
+                    }
+                  },
+                  child: const Text('Update Contact'),
+                ),
+              ),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
                     model.removeContact(contact);
                   },
                   child: const Text('Delete Contact'),
