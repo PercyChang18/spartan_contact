@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'contacts_database.dart';
 import 'contact.dart';
 import 'model.dart';
 
 /// Represents a page for adding an individual contact.
 /// @author Viola Yasuda
 /// @version 11/18/2021
-class AddingContact extends StatelessWidget {
+class EditingContact extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final occupationController = TextEditingController();
@@ -14,14 +14,23 @@ class AddingContact extends StatelessWidget {
   final emailController = TextEditingController();
   final addressController = TextEditingController();
   final websiteController = TextEditingController();
+
   final Model model;
+  final Contact contact;
 
   /// Constructs an AddingContact page.
-  AddingContact({Key? key, required this.model}) : super(key: key);
+  EditingContact({Key? key, required this.contact, required this.model})
+      : super(key: key);
 
   /// Builds the display for an AddingContact.
   @override
   Widget build(BuildContext context) {
+    nameController.text = contact.getFullName();
+    occupationController.text = contact.getOccupation();
+    phoneController.text = contact.getPhone();
+    emailController.text = contact.getEmail();
+    addressController.text = contact.getAddress();
+    websiteController.text = contact.getWebsite();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Adding Contact'),
@@ -135,8 +144,7 @@ class AddingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        addressController.text = "";
-                        //return 'Please enter some text';
+                        return 'Please enter some text';
                       }
                       return null;
                     },
@@ -155,8 +163,7 @@ class AddingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        websiteController.text = "";
-                        //return 'Please enter some text';
+                        return 'Please enter some text';
                       }
                       return null;
                     },
@@ -173,26 +180,33 @@ class AddingContact extends StatelessWidget {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                       // Process data.
-                      List<String> name = nameController.text.split(" ");
-                      model.addContact(Contact(
-                          nameController.text,
-                          name[0],
-                          name[name.length - 1],
-                          occupationController.text,
-                          phoneController.text,
-                          emailController.text,
-                          addressController.text,
-                          websiteController.text,
-                          model.genID()));
-                      nameController.text = "";
-                      occupationController.text = "";
-                      phoneController.text = "";
-                      emailController.text = "";
-                      addressController.text = "";
-                      websiteController.text = "";
+                      contact.setName(nameController.text);
+                      contact.setOccupation(occupationController.text);
+                      contact.setPhone(phoneController.text);
+                      contact.setEmail(emailController.text);
+                      contact.setAddress(addressController.text);
+                      contact.setWebsite(websiteController.text);
+                      updateContact(contact);
+                      model.notifyView();
+                      Navigator.pushNamed(context, '/');
                     }
                   },
-                  child: const Text('Submit'),
+                  child: const Text('Update Contact'),
+                ),
+              ),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    model.removeContact(contact);
+                    Navigator.pushNamed(context, '/');
+                  },
+                  child: const Text('Delete Contact'),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.red)),
                 ),
               ),
             ]),
