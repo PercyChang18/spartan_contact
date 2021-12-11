@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'contact.dart';
 import 'contacts_database.dart';
+import 'contact.dart';
 import 'model.dart';
 
-/// Represents a page for editing an individual contact.
+/// Represents a page for adding an individual contact.
 /// @author Viola Yasuda
 /// @version 11/18/2021
 class EditingContact extends StatelessWidget {
@@ -19,11 +18,11 @@ class EditingContact extends StatelessWidget {
   final Model model;
   final Contact contact;
 
-  /// Constructs an EditingContact page.
+  /// Constructs an AddingContact page.
   EditingContact({Key? key, required this.contact, required this.model})
       : super(key: key);
 
-  /// Builds the display for an EditingContact.
+  /// Builds the display for an AddingContact.
   @override
   Widget build(BuildContext context) {
     nameController.text = contact.getFullName();
@@ -34,7 +33,7 @@ class EditingContact extends StatelessWidget {
     websiteController.text = contact.getWebsite();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editing Contact'),
+        title: const Text('Adding Contact'),
       ),
       backgroundColor: Colors.teal,
       body: Form(
@@ -145,8 +144,7 @@ class EditingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        addressController.text = "";
-                        //return 'Please enter some text';
+                        return 'Please enter some text';
                       }
                       return null;
                     },
@@ -165,8 +163,7 @@ class EditingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        websiteController.text = "";
-                        //return 'Please enter some text';
+                        return 'Please enter some text';
                       }
                       return null;
                     },
@@ -191,28 +188,7 @@ class EditingContact extends StatelessWidget {
                       contact.setWebsite(websiteController.text);
                       updateContact(contact);
                       model.notifyView();
-                    }
-                  },
-                  child: const Text('Update Contact'),
-                ),
-              ),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Validate will return true if the form is valid, or false if
-                    // the form is invalid.
-                    if (_formKey.currentState!.validate()) {
-                      // Process data.
-                      contact.setName(nameController.text);
-                      contact.setOccupation(occupationController.text);
-                      contact.setPhone(phoneController.text);
-                      contact.setEmail(emailController.text);
-                      contact.setAddress(addressController.text);
-                      contact.setWebsite(websiteController.text);
-                      model.notifyView();
+                      Navigator.pushNamed(context, '/');
                     }
                   },
                   child: const Text('Update Contact'),
@@ -225,6 +201,7 @@ class EditingContact extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     model.removeContact(contact);
+                    Navigator.pushNamed(context, '/');
                   },
                   child: const Text('Delete Contact'),
                   style: ButtonStyle(
