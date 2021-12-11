@@ -29,6 +29,7 @@ class _ContactsPageState extends State<ContactsPage> implements View {
   late List<GestureDetector> detectorList;
   final searchController = TextEditingController();
   String dropdownValue = 'All:';
+  var currentFocus;
 
   _ContactsPageState(this.model);
 
@@ -50,6 +51,14 @@ class _ContactsPageState extends State<ContactsPage> implements View {
           },
         ),
       );
+    }
+  }
+
+  void unfocus() {
+    currentFocus = FocusScope.of(context);
+
+    if (!currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
     }
   }
 
@@ -115,6 +124,7 @@ class _ContactsPageState extends State<ContactsPage> implements View {
                         onPressed: () {
                           searchController.text = "";
                           model.resetList();
+                          unfocus();
                         },
                         icon: Icon(Icons.clear),
                       ),
@@ -125,19 +135,16 @@ class _ContactsPageState extends State<ContactsPage> implements View {
                   onEditingComplete: () {
                     if (dropdownValue == 'All:') {
                       model.searchByAll(searchController.text);
-                    }
-                    if (dropdownValue == 'Name:') {
+                    } else if (dropdownValue == 'Name:') {
                       model.searchByName(searchController.text);
-                    }
-                    if (dropdownValue == 'Occupation:') {
+                    } else if (dropdownValue == 'Occupation:') {
                       model.searchByOccupation(searchController.text);
-                    }
-                    if (dropdownValue == 'Phone:') {
+                    } else if (dropdownValue == 'Phone:') {
                       model.searchByPhone(searchController.text);
-                    }
-                    if (dropdownValue == 'Email:') {
+                    } else if (dropdownValue == 'Email:') {
                       model.searchByEmail(searchController.text);
                     }
+                    unfocus();
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
