@@ -35,6 +35,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
   late bool occupationIsSelected;
   late bool phoneIsSelected;
   late bool emailIsSelected;
+  late bool homeAddressIsSelected;
+  late bool websiteIsSelected;
 
   late List<Contact> contactsList;
 
@@ -45,6 +47,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
     occupationIsSelected = model.getOrganizationStyle() == "occupation";
     phoneIsSelected = model.getOrganizationStyle() == "phone";
     emailIsSelected = model.getOrganizationStyle() == "email";
+    homeAddressIsSelected = model.getOrganizationStyle() == "home address";
+    websiteIsSelected = model.getOrganizationStyle() == "website";
   }
 
   ///
@@ -69,6 +73,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
                     occupationIsSelected = false;
                     phoneIsSelected = false;
                     emailIsSelected = false;
+                    homeAddressIsSelected = false;
+                    websiteIsSelected = false;
                   });
                   model.setOrganizationStyle("first name");
                 },
@@ -89,6 +95,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
                     occupationIsSelected = false;
                     phoneIsSelected = false;
                     emailIsSelected = false;
+                    homeAddressIsSelected = false;
+                    websiteIsSelected = false;
                   });
                   model.setOrganizationStyle("last name");
                 },
@@ -109,6 +117,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
                     occupationIsSelected = true;
                     phoneIsSelected = false;
                     emailIsSelected = false;
+                    homeAddressIsSelected = false;
+                    websiteIsSelected = false;
                   });
                   model.setOrganizationStyle("occupation");
                 },
@@ -129,6 +139,8 @@ class _OrganizationSettingState extends State<OrganizationSetting>
                     occupationIsSelected = false;
                     phoneIsSelected = true;
                     emailIsSelected = false;
+                    homeAddressIsSelected = false;
+                    websiteIsSelected = false;
                   });
                   model.setOrganizationStyle("phone");
                 },
@@ -149,12 +161,58 @@ class _OrganizationSettingState extends State<OrganizationSetting>
                     occupationIsSelected = false;
                     phoneIsSelected = false;
                     emailIsSelected = true;
+                    homeAddressIsSelected = false;
+                    websiteIsSelected = false;
                   });
                   model.setOrganizationStyle("email");
                 },
                 child: OrganizationButton(
                   'Email',
                   emailIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
+                ),
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    firstNameIsSelected = false;
+                    lastNameIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
+                    homeAddressIsSelected = true;
+                    websiteIsSelected = false;
+                  });
+                  model.setOrganizationStyle("home address");
+                },
+                child: OrganizationButton(
+                  'Home Address',
+                  homeAddressIsSelected
+                      ? kButtonSelectedColor
+                      : kButtonNotSelectedColor,
+                ),
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    firstNameIsSelected = false;
+                    lastNameIsSelected = false;
+                    occupationIsSelected = false;
+                    phoneIsSelected = false;
+                    emailIsSelected = false;
+                    homeAddressIsSelected = false;
+                    websiteIsSelected = true;
+                  });
+                  model.setOrganizationStyle("website");
+                },
+                child: OrganizationButton(
+                  'Website',
+                  websiteIsSelected
                       ? kButtonSelectedColor
                       : kButtonNotSelectedColor,
                 ),
