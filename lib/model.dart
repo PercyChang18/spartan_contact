@@ -177,14 +177,15 @@ class Model {
   }
 
   /// Returns a contacts list that contains contacts whose occupation contains the search query.
-  List<Contact> searchByOccupation(String search) {
+  void searchByOccupation(String search) {
     List<Contact> toReturn = [];
     for (Contact c in fullContactsList) {
       if (c.occupation.contains(search)) {
         toReturn.add(c);
       }
     }
-    return toReturn;
+    displayedContactsList = toReturn;
+    setOrganizationStyle(organizationStyle);
   }
 
   /// Returns a contacts list that contains contacts whose email contains the search query.
