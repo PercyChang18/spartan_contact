@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'contacts_database.dart';
+
 import 'contact.dart';
+import 'contacts_database.dart';
 import 'model.dart';
 
 /// Represents a page for adding an individual contact.
@@ -144,7 +145,8 @@ class EditingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        addressController.text = "";
+                        //return 'Please enter some text';
                       }
                       return null;
                     },
@@ -163,7 +165,8 @@ class EditingContact extends StatelessWidget {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        websiteController.text = "";
+                        //return 'Please enter some text';
                       }
                       return null;
                     },
