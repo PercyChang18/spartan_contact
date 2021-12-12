@@ -10,11 +10,12 @@ class Contact {
   String email;
   String address;
   String website;
+  String notes;
   int id;
 
   /// Constructs a Contact.
   Contact(this.fullName, this.firstName, this.lastName, this.occupation,
-      this.phone, this.email, this.address, this.website, this.id);
+      this.phone, this.email, this.address, this.website, this.notes, this.id);
 
   /// Gets the contact's full name.
   String getFullName() {
@@ -82,6 +83,16 @@ class Contact {
   /// Gets the contact's website.
   String getWebsite() {
     return website;
+  }
+
+  /// Updates the contact's notes.
+  void setNotes(String notes) {
+    this.notes = notes;
+  }
+
+  /// Gets the contact's notes.
+  String getNotes() {
+    return notes;
   }
 
   int getID() {

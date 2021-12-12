@@ -15,6 +15,7 @@ class EditingContact extends StatelessWidget {
   final emailController = TextEditingController();
   final addressController = TextEditingController();
   final websiteController = TextEditingController();
+  final notesController = TextEditingController();
 
   final Model model;
   final Contact contact;
@@ -32,9 +33,10 @@ class EditingContact extends StatelessWidget {
     emailController.text = contact.getEmail();
     addressController.text = contact.getAddress();
     websiteController.text = contact.getWebsite();
+    notesController.text = contact.getNotes();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adding Contact'),
+        title: const Text('Editing Contact'),
       ),
       backgroundColor: Colors.teal,
       body: Form(
@@ -173,6 +175,26 @@ class EditingContact extends StatelessWidget {
                   ),
                 ),
               ),
+              Card(
+                margin: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  leading: const Icon(Icons.notes, color: Colors.teal),
+                  title: TextFormField(
+                    controller: notesController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter contact\'s website',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        notesController.text = "";
+                        //return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Padding(
@@ -189,6 +211,7 @@ class EditingContact extends StatelessWidget {
                       contact.setEmail(emailController.text);
                       contact.setAddress(addressController.text);
                       contact.setWebsite(websiteController.text);
+                      contact.setNotes(notesController.text);
                       updateContact(contact);
                       model.notifyView();
                       Navigator.pushNamed(context, '/');

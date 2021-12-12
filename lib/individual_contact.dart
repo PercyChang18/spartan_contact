@@ -42,27 +42,9 @@ class IndividualContact extends StatelessWidget {
       ),
       backgroundColor: Colors.teal,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: ListView(
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(
-                margin: const EdgeInsets.fromLTRB(0, 0, 15.0, 0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const <Widget>[
-                      // Icon(
-                      //   Icons.arrow_back,
-                      //   size: 60.0,
-                      // ),
-                      // Card(
-                      //     color: Colors.yellow,
-                      //     child: Text('Edit',
-                      //         style: TextStyle(
-                      //           fontFamily: 'Source Sans Pro',
-                      //           fontSize: 15.0,
-                      //           fontWeight: FontWeight.bold,
-                      //         )))
-                    ])),
             Column(children: <Widget>[
               const CircleAvatar(
                 radius: 50.0,
@@ -138,6 +120,20 @@ class IndividualContact extends StatelessWidget {
                   leading: const Icon(Icons.web, color: Colors.teal),
                   title: Text(
                     contact.getWebsite(),
+                    style: const TextStyle(
+                        color: Colors.teal,
+                        fontFamily: 'Source Sans Pro',
+                        fontSize: 20.0),
+                  ),
+                ),
+              ),
+              Card(
+                margin: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  leading: const Icon(Icons.notes, color: Colors.teal),
+                  title: Text(
+                    contact.getNotes(),
                     style: const TextStyle(
                         color: Colors.teal,
                         fontFamily: 'Source Sans Pro',
