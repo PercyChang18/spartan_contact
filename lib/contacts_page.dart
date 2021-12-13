@@ -8,7 +8,7 @@ import 'model.dart';
 import 'view.dart';
 
 /// Represents the contacts page of the Spartan Contacts App.
-/// @authors Percy Chang, Joel Jacob, Viola Yasuda
+/// @authors Kuang-Chi Chang, Joel Jacob, Viola Yasuda
 /// @version 12/12/2021
 class ContactsPage extends StatefulWidget {
   final Model model;
