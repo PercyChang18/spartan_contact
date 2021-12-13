@@ -5,15 +5,17 @@ import 'contact.dart';
 import 'model.dart';
 import 'organization_button.dart';
 import 'view.dart';
+///@author Kuang-Chi Chang
+///@version 12/05/2021
 
-///
+///Represents the page for setting organization
 class OrganizationSetting extends StatefulWidget {
   final Model model;
 
-  ///
+  ///Constructs the page
   const OrganizationSetting({Key? key, required this.model}) : super(key: key);
 
-  ///
+  ///Creates state
   @override
   _OrganizationSettingState createState() {
     _OrganizationSettingState state = _OrganizationSettingState(model);
@@ -21,7 +23,7 @@ class OrganizationSetting extends StatefulWidget {
   }
 }
 
-///
+///Constructs the state of the organization setting page
 class _OrganizationSettingState extends State<OrganizationSetting>
     implements View {
   late Model model;
@@ -46,7 +48,7 @@ class _OrganizationSettingState extends State<OrganizationSetting>
     websiteIsSelected = model.getOrganizationStyle() == "website";
   }
 
-  ///
+  ///Builds the organization setting page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
