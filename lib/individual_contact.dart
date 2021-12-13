@@ -5,6 +5,8 @@ import 'editing_contact_page.dart';
 import 'model.dart';
 
 /// Represents a page for an individual contact.
+/// @author Viola Yasuda
+/// @version 12/12/2021
 class IndividualContact extends StatelessWidget {
   final Contact contact;
   final Model model;
@@ -43,7 +45,6 @@ class IndividualContact extends StatelessWidget {
       backgroundColor: Colors.teal,
       body: SafeArea(
         child: ListView(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Column(children: <Widget>[
               const CircleAvatar(

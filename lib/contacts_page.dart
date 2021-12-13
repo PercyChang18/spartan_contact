@@ -43,7 +43,6 @@ class _ContactsPageState extends State<ContactsPage> implements View {
         GestureDetector(
           child: ContactContainer(contact: model.getDisplayedContactsList()[i]),
           onTap: () {
-            //Navigator.pushNamed(context, '/individual_contact');
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -59,7 +58,6 @@ class _ContactsPageState extends State<ContactsPage> implements View {
   /// Allows the keypad to be closed.
   void unfocus() {
     currentFocus = FocusScope.of(context);
-
     if (!currentFocus.hasPrimaryFocus) {
       currentFocus.unfocus();
     }
@@ -92,7 +90,6 @@ class _ContactsPageState extends State<ContactsPage> implements View {
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
               color: Colors.white,
               child: ListTile(
-                //leading: const Icon(Icons.search, color: Colors.teal),
                 title: TextFormField(
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(

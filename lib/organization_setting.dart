@@ -5,17 +5,17 @@ import 'contact.dart';
 import 'model.dart';
 import 'organization_button.dart';
 import 'view.dart';
-///@author Kuang-Chi Chang
-///@version 12/05/2021
 
 ///Represents the page for setting organization
+///@author Kuang-Chi Chang
+///@version 12/05/2021
 class OrganizationSetting extends StatefulWidget {
   final Model model;
 
-  ///Constructs the page
+  ///Constructs the page.
   const OrganizationSetting({Key? key, required this.model}) : super(key: key);
 
-  ///Creates state
+  ///Creates state.
   @override
   _OrganizationSettingState createState() {
     _OrganizationSettingState state = _OrganizationSettingState(model);
@@ -37,6 +37,7 @@ class _OrganizationSettingState extends State<OrganizationSetting>
 
   late List<Contact> contactsList;
 
+  /// Constructs the _OrganizationSettingState.
   _OrganizationSettingState(this.model) {
     contactsList = model.getDisplayedContactsList();
     firstNameIsSelected = model.getOrganizationStyle() == "first name";
@@ -226,6 +227,7 @@ class _OrganizationSettingState extends State<OrganizationSetting>
     );
   }
 
+  /// Updates the state of the page.
   @override
   void update() {
     setState(() {});

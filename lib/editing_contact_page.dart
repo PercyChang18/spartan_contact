@@ -16,7 +16,6 @@ class EditingContact extends StatelessWidget {
   final addressController = TextEditingController();
   final websiteController = TextEditingController();
   final notesController = TextEditingController();
-
   final Model model;
   final Contact contact;
 
@@ -42,7 +41,6 @@ class EditingContact extends StatelessWidget {
       body: Form(
         key: _formKey,
         child: ListView(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
                 margin: const EdgeInsets.fromLTRB(0, 0, 15.0, 0),
@@ -148,7 +146,6 @@ class EditingContact extends StatelessWidget {
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         addressController.text = "";
-                        //return 'Please enter some text';
                       }
                       return null;
                     },
@@ -168,7 +165,6 @@ class EditingContact extends StatelessWidget {
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         websiteController.text = "";
-                        //return 'Please enter some text';
                       }
                       return null;
                     },
@@ -188,7 +184,6 @@ class EditingContact extends StatelessWidget {
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         notesController.text = "";
-                        //return 'Please enter some text';
                       }
                       return null;
                     },

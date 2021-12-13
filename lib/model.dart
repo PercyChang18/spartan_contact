@@ -27,7 +27,6 @@ class Model {
   /// Updates the full contacts list.
   void setFullContactsList() {
     fullContactsList = converter();
-    //update displayedContactsList
   }
 
   /// Helper method for setFullContactsList().

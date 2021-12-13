@@ -6,11 +6,11 @@ import 'package:sqflite/sqflite.dart';
 
 import 'contact.dart';
 
-/// @Joel Jacob
-/// @12/11/21
+/// Implements and tests the database for the app.
+/// @author Joel Jacob
+/// @version 12/11/21
 void main() async {
   List<Contact> list = await getContacts();
-  //insertContact(Contact('fa', 'fa', 'la', 'oa', 'pa', 'ea', 'aa', 'wa', 'na', 22));
   print(list);
 }
 

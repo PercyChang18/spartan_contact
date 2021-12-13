@@ -8,7 +8,8 @@ import 'contacts_page.dart';
 import 'model.dart';
 import 'organization_setting.dart';
 
-///
+/// Main method for opening Spartan Contacts.
+/// @author Percy Chang, Joel Jacob, Viola Yasuda
 void main() {
   Model model = Model("last name");
   ContactsPage contactsPage = ContactsPage(model: model);
@@ -46,6 +47,8 @@ class SpartanContact extends StatelessWidget {
       },
     );
     /*
+    // Not implemented in final product
+    // @author Vikranthreddy Jakamukala
     return ChangeNotifierProvider(
         create: (_) => ThemeModel(),
         child: Consumer(builder: (context,ThemeModel themeModel,child){
