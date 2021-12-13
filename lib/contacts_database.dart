@@ -56,7 +56,7 @@ Future<List<Contact>> getContacts() async {
       maps[i]['email'],
       maps[i]['address'],
       maps[i]['website'],
-      maps[i]['notes'],
+      //maps[i]['notes'],
       maps[i]['id'],
     );
   });

@@ -14,7 +14,7 @@ class AddingContact extends StatelessWidget {
   final emailController = TextEditingController();
   final addressController = TextEditingController();
   final websiteController = TextEditingController();
-  final notesController = TextEditingController();
+  //final notesController = TextEditingController();
   final Model model;
 
   /// Constructs an AddingContact page.
@@ -164,26 +164,26 @@ class AddingContact extends StatelessWidget {
                   ),
                 ),
               ),
-              Card(
-                margin: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 25.0),
-                child: ListTile(
-                  leading: const Icon(Icons.notes, color: Colors.teal),
-                  title: TextFormField(
-                    controller: notesController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter contact\'s notes',
-                    ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        notesController.text = "";
-                        //return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
+              // Card(
+              //   margin: const EdgeInsets.symmetric(
+              //       vertical: 10.0, horizontal: 25.0),
+              //   child: ListTile(
+              //     leading: const Icon(Icons.notes, color: Colors.teal),
+              //     title: TextFormField(
+              //       controller: notesController,
+              //       decoration: const InputDecoration(
+              //         hintText: 'Enter contact\'s notes',
+              //       ),
+              //       validator: (String? value) {
+              //         if (value == null || value.isEmpty) {
+              //           notesController.text = "";
+              //           //return 'Please enter some text';
+              //         }
+              //         return null;
+              //       },
+              //     ),
+              //   ),
+              // ),
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Padding(
@@ -204,7 +204,7 @@ class AddingContact extends StatelessWidget {
                           emailController.text,
                           addressController.text,
                           websiteController.text,
-                          notesController.text,
+                          //notesController.text,
                           model.genID()));
                       nameController.text = "";
                       occupationController.text = "";
