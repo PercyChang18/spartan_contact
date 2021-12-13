@@ -8,6 +8,8 @@ import 'model.dart';
 import 'view.dart';
 
 /// Represents the contacts page of the Spartan Contacts App.
+/// @authors Percy Chang, Joel Jacob, Viola Yasuda
+/// @version 12/12/2021
 class ContactsPage extends StatefulWidget {
   final Model model;
 
@@ -54,6 +56,7 @@ class _ContactsPageState extends State<ContactsPage> implements View {
     }
   }
 
+  /// Allows the keypad to be closed.
   void unfocus() {
     currentFocus = FocusScope.of(context);
 
@@ -170,6 +173,7 @@ class _ContactsPageState extends State<ContactsPage> implements View {
     );
   }
 
+  /// Updates the state of the page.
   @override
   void update() {
     setState(() {});

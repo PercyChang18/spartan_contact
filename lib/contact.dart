@@ -95,6 +95,7 @@ class Contact {
     return notes;
   }
 
+  /// Gets the contact's ID.
   int getID() {
     return id;
   }

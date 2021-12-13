@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 
 import 'contact.dart';
 
-///
+/// TODO: fill this out
 /// @author
 /// @version
 void main() async {
@@ -14,6 +14,7 @@ void main() async {
   print(list);
 }
 
+/// TODO: fill this out
 Future<void> insertContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -31,7 +32,7 @@ Future<void> insertContact(Contact contact) async {
       conflictAlgorithm: ConflictAlgorithm.replace);
 }
 
-///
+/// TODO: fill this out
 Future<List<Contact>> getContacts() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -61,7 +62,7 @@ Future<List<Contact>> getContacts() async {
   });
 }
 
-///
+/// TODO: fill this out
 Future<void> updateContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -83,7 +84,7 @@ Future<void> updateContact(Contact contact) async {
   );
 }
 
-///
+/// TODO: fill this out
 Future<void> deleteContact(int id) async {
   WidgetsFlutterBinding.ensureInitialized();
 
