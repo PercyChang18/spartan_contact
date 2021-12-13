@@ -6,16 +6,15 @@ import 'package:sqflite/sqflite.dart';
 
 import 'contact.dart';
 
-/// TODO: fill this out
-/// @author
-/// @version
+/// @Joel Jacob
+/// @12/11/21
 void main() async {
   List<Contact> list = await getContacts();
   //insertContact(Contact('fa', 'fa', 'la', 'oa', 'pa', 'ea', 'aa', 'wa', 'na', 22));
   print(list);
 }
 
-/// TODO: fill this out
+/// Inserts contact into the database.
 Future<void> insertContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -33,7 +32,7 @@ Future<void> insertContact(Contact contact) async {
       conflictAlgorithm: ConflictAlgorithm.replace);
 }
 
-/// TODO: fill this out
+/// Generates a list of all contacts in the database.
 Future<List<Contact>> getContacts() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -63,7 +62,7 @@ Future<List<Contact>> getContacts() async {
   });
 }
 
-/// TODO: fill this out
+/// Updates the passed in contact in the database.
 Future<void> updateContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -85,7 +84,7 @@ Future<void> updateContact(Contact contact) async {
   );
 }
 
-/// TODO: fill this out
+/// Deletes a contact based on the ID passed into the method in the database.
 Future<void> deleteContact(int id) async {
   WidgetsFlutterBinding.ensureInitialized();
 

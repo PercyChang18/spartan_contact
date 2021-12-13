@@ -13,7 +13,6 @@ void main() {
   Model model = Model("last name");
   ContactsPage contactsPage = ContactsPage(model: model);
   OrganizationSetting organizationSetting = OrganizationSetting(model: model);
-  model.registerView(organizationSetting);
   runApp(SpartanContact(
       model: model,
       contactsPage: contactsPage,
@@ -46,7 +45,7 @@ class SpartanContact extends StatelessWidget {
         //'/individual_contact': (context) => IndividualContact(),
       },
     );
-/*
+    /*
     return ChangeNotifierProvider(
         create: (_) => ThemeModel(),
         child: Consumer(builder: (context,ThemeModel themeModel,child){

@@ -1,5 +1,5 @@
 /// Represents a contact.
-/// @author Viola Yasuda
+/// @author Viola Yasuda and Joel Jacob
 /// @version 11/16/2021
 class Contact {
   String fullName;

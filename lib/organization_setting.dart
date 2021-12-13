@@ -7,7 +7,7 @@ import 'organization_button.dart';
 import 'view.dart';
 
 ///
-class OrganizationSetting extends StatefulWidget implements View {
+class OrganizationSetting extends StatefulWidget {
   final Model model;
 
   ///
@@ -18,11 +18,6 @@ class OrganizationSetting extends StatefulWidget implements View {
   _OrganizationSettingState createState() {
     _OrganizationSettingState state = _OrganizationSettingState(model);
     return state;
-  }
-
-  @override
-  void update() {
-    // TODO: implement update
   }
 }
 

@@ -127,20 +127,20 @@ class IndividualContact extends StatelessWidget {
                   ),
                 ),
               ),
-              // Card(
-              //   margin: const EdgeInsets.symmetric(
-              //       vertical: 10.0, horizontal: 25.0),
-              //   child: ListTile(
-              //     leading: const Icon(Icons.notes, color: Colors.teal),
-              //     title: Text(
-              //       contact.getNotes(),
-              //       style: const TextStyle(
-              //           color: Colors.teal,
-              //           fontFamily: 'Source Sans Pro',
-              //           fontSize: 20.0),
-              //     ),
-              //   ),
-              // ),
+              Card(
+                margin: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  leading: const Icon(Icons.notes, color: Colors.teal),
+                  title: Text(
+                    contact.getNotes(),
+                    style: const TextStyle(
+                        color: Colors.teal,
+                        fontFamily: 'Source Sans Pro',
+                        fontSize: 20.0),
+                  ),
+                ),
+              ),
             ]),
           ],
         ),

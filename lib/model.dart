@@ -5,7 +5,7 @@ import 'contacts_database.dart';
 import 'view.dart';
 
 /// Represents a model. Holds the data for the Spartan Contacts app.
-/// @author Viola Yasuda
+/// @author Viola Yasuda and Joel Jacob
 /// @version 11/16/2021
 class Model {
   late List<Contact> fullContactsList = converter();
@@ -135,6 +135,7 @@ class Model {
     this.displayedContactsList = displayedContactsList;
   }
 
+  ///Resets displayed list to show all contacts stored in the database.
   void resetList() {
     displayedContactsList = fullContactsList;
     setOrganizationStyle(organizationStyle);
@@ -202,7 +203,6 @@ class Model {
 
   /// Generates a new ID by taking the maximum ID and incrementing by 1.
   int genID() {
-    List<Contact> list = fullContactsList;
     int maxID = -1;
     for (Contact c in fullContactsList) {
       if (c.getID() > maxID) {
@@ -213,11 +213,5 @@ class Model {
       return 0;
     }
     return maxID + 1;
-  }
-
-  List<String> nameParse(String fullName) {
-    List<String> full = fullName.split(" ");
-    List<String> ret = [full[0], full[full.length - 1]];
-    return ret;
   }
 }
