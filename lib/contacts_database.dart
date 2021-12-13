@@ -11,6 +11,7 @@ import 'contact.dart';
 /// @version
 void main() async {
   List<Contact> list = await getContacts();
+  //insertContact(Contact('fa', 'fa', 'la', 'oa', 'pa', 'ea', 'aa', 'wa', 'na', 22));
   print(list);
 }
 
@@ -19,16 +20,16 @@ Future<void> insertContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts2_database.db'),
+    join(await getDatabasesPath(), 'contacts321_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts321(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT, notes TEXT)');
     },
     version: 1,
   );
 
   final db = await database;
-  await db.insert('contacts2', contact.toMap(),
+  await db.insert('contacts321', contact.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace);
 }
 
@@ -37,15 +38,15 @@ Future<List<Contact>> getContacts() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts2_database.db'),
+    join(await getDatabasesPath(), 'contacts321_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts321(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT, notes TEXT)');
     },
     version: 1,
   );
   final db = await database;
-  final List<Map<String, dynamic>> maps = await db.query("contacts2");
+  final List<Map<String, dynamic>> maps = await db.query("contacts321");
   return List.generate(maps.length, (i) {
     return Contact(
       maps[i]['fullName'],
@@ -56,7 +57,7 @@ Future<List<Contact>> getContacts() async {
       maps[i]['email'],
       maps[i]['address'],
       maps[i]['website'],
-      //maps[i]['notes'],
+      maps[i]['notes'],
       maps[i]['id'],
     );
   });
@@ -67,17 +68,17 @@ Future<void> updateContact(Contact contact) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts2_database.db'),
+    join(await getDatabasesPath(), 'contacts321_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts321(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT, notes TEXT)');
     },
     version: 1,
   );
   final db = await database;
 
   await db.update(
-    'contacts2',
+    'contacts321',
     contact.toMap(),
     where: 'id = ?',
     whereArgs: [contact.id],
@@ -89,16 +90,16 @@ Future<void> deleteContact(int id) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final database = openDatabase(
-    join(await getDatabasesPath(), 'contacts2_database.db'),
+    join(await getDatabasesPath(), 'contacts321_database.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE contacts2(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT)');
+          'CREATE TABLE contacts321(id INTEGER PRIMARY KEY, fullName TEXT, firstName TEXT, lastName TEXT, occupation TEXT, phone TEXT, email TEXT, address TEXT, website TEXT, notes TEXT)');
     },
     version: 1,
   );
   final db = await database;
   await db.delete(
-    'contacts2',
+    'contacts321',
     where: 'id = ?',
     whereArgs: [id],
   );

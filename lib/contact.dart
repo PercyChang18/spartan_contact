@@ -10,20 +10,12 @@ class Contact {
   String email;
   String address;
   String website;
-  //String notes;
+  String notes;
   int id;
 
   /// Constructs a Contact.
-  Contact(
-      this.fullName,
-      this.firstName,
-      this.lastName,
-      this.occupation,
-      this.phone,
-      this.email,
-      this.address,
-      this.website,
-      /*this.notes,*/ this.id);
+  Contact(this.fullName, this.firstName, this.lastName, this.occupation,
+      this.phone, this.email, this.address, this.website, this.notes, this.id);
 
   /// Gets the contact's full name.
   String getFullName() {
@@ -93,15 +85,15 @@ class Contact {
     return website;
   }
 
-  // /// Updates the contact's notes.
-  // void setNotes(String notes) {
-  //   this.notes = notes;
-  // }
-  //
-  // /// Gets the contact's notes.
-  // String getNotes() {
-  //   return notes;
-  // }
+  /// Updates the contact's notes.
+  void setNotes(String notes) {
+    this.notes = notes;
+  }
+
+  /// Gets the contact's notes.
+  String getNotes() {
+    return notes;
+  }
 
   /// Gets the contact's ID.
   int getID() {
@@ -125,13 +117,13 @@ class Contact {
       'email': email,
       'address': address,
       'website': website,
-      //'notes': notes
+      'notes': notes
     };
   }
 
   /// Returns the contact's information in the form of a String.
   @override
   String toString() {
-    return 'Contact {id: $id, name: $fullName, occupation: $occupation, phone: $phone, email: $email, address: $address, website: $website}';
+    return 'Contact {id: $id, name: $fullName, occupation: $occupation, phone: $phone, email: $email, address: $address, website: $website, notes: $notes}';
   }
 }
